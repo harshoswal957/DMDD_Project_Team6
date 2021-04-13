@@ -1,20 +1,21 @@
 --CREATE TABLES:
+
 CREATE TABLE Department (
-  department_id int,
+  department_id int PRIMARY KEY,
   department_name varchar(50),
   hod_name varchar(20),
   number_of_employees int
 );
 
 CREATE TABLE Patient_Doctor (
-  doc_pat_id int,
+  doc_pat_id int PRIMARY KEY,
   patient_id int,
   doctor_id int,
   appoin_date date
 );
 
 CREATE TABLE Laboratory (
-  test_id int,
+  test_id int PRIMARY KEY,
   patient_id int,
   date_of_test date,
   date_of_result date,
@@ -24,7 +25,7 @@ CREATE TABLE Laboratory (
 );
 
 CREATE TABLE Staff (
-  staff_id int,
+  staff_id int PRIMARY KEY,
   first_name varchar(20),
   last_name varchar(20),
   age int,
@@ -34,7 +35,7 @@ CREATE TABLE Staff (
 );
 
 CREATE TABLE Doctor (
-  doctor_id int,
+  doctor_id int PRIMARY KEY,
   first_name varchar(20),
   last_name varchar(20),
   address varchar(50),
@@ -45,7 +46,7 @@ CREATE TABLE Doctor (
 );
 
 CREATE TABLE Inventory (
-  item_id int,
+  item_id int PRIMARY KEY,
   item_name varchar(20),
   item_brand varchar(20),
   quantity int,
@@ -53,7 +54,7 @@ CREATE TABLE Inventory (
 );
 
 CREATE TABLE Patient (
-  patient_id int,
+  patient_id int PRIMARY KEY,
   first_name varchar(20),
   last_name varchar(20),
   address varchar(50),
@@ -66,19 +67,19 @@ CREATE TABLE Patient (
 );
 
 CREATE TABLE PaymentTransactions (
-  payment_id int,
+  payment_id int PRIMARY KEY,
   payment_amount int,
   payment_date date
 );
 
 CREATE TABLE Patient_Medicine (
-  pat_med_id int,
+  pat_med_id int PRIMARY KEY,
   patient_id int,
   medicine_id int
 );
 
 CREATE TABLE Patient_Ward (
-  pat_ward_id int,
+  pat_ward_id int PRIMARY KEY,
   patient_id int,
   ward_id int,
   admit_date date,
@@ -86,13 +87,13 @@ CREATE TABLE Patient_Ward (
 );
 
 CREATE TABLE Medicine (
-  medicine_id int,
+  medicine_id int PRIMARY KEY,
   medicine_name varchar(20),
   quantity int
 );
 
 CREATE TABLE HospitalWard (
-  ward_id int,
+  ward_id int PRIMARY KEY,
   ward_type varchar(20),
   building_name varchar(20),
   floor int,
@@ -100,7 +101,7 @@ CREATE TABLE HospitalWard (
 );
 
 CREATE TABLE Staff_Ward (
-  staff_ward_id int,
+  staff_ward_id int PRIMARY KEY,
   ward_id int,
   staff_id int
 );
