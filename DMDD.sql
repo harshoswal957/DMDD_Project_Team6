@@ -55,23 +55,22 @@ maxvalue 22999;
 
 
 --CREATE TABLES:
-
 CREATE TABLE Department (
-  department_id int PRIMARY KEY,
+  department_id int DEFAULT pk10_seq.nextval PRIMARY KEY,
   department_name varchar(50),
   hod_name varchar(20),
   number_of_employees int
 );
 
 CREATE TABLE Patient_Doctor (
-  doc_pat_id int PRIMARY KEY,
+  doc_pat_id int DEFAULT pk11_seq.nextval PRIMARY KEY,
   patient_id int,
   doctor_id int,
   appoin_date date
 );
 
 CREATE TABLE Laboratory (
-  test_id int PRIMARY KEY,
+  test_id int DEFAULT pk12_seq.nextval PRIMARY KEY,
   patient_id int,
   date_of_test date,
   date_of_result date,
@@ -81,7 +80,7 @@ CREATE TABLE Laboratory (
 );
 
 CREATE TABLE Staff (
-  staff_id int PRIMARY KEY,
+  staff_id int DEFAULT pk13_seq.nextval PRIMARY KEY,
   first_name varchar(20),
   last_name varchar(20),
   age int,
@@ -91,7 +90,7 @@ CREATE TABLE Staff (
 );
 
 CREATE TABLE Doctor (
-  doctor_id int PRIMARY KEY,
+  doctor_id int DEFAULT pk14_seq.nextval PRIMARY KEY,
   first_name varchar(20),
   last_name varchar(20),
   address varchar(50),
@@ -102,7 +101,7 @@ CREATE TABLE Doctor (
 );
 
 CREATE TABLE Inventory (
-  item_id int PRIMARY KEY,
+  item_id int DEFAULT pk15_seq.nextval PRIMARY KEY,
   item_name varchar(20),
   item_brand varchar(20),
   quantity int,
@@ -110,7 +109,7 @@ CREATE TABLE Inventory (
 );
 
 CREATE TABLE Patient (
-  patient_id int PRIMARY KEY,
+  patient_id int DEFAULT pk16_seq.nextval PRIMARY KEY,
   first_name varchar(20),
   last_name varchar(20),
   address varchar(50),
@@ -123,19 +122,19 @@ CREATE TABLE Patient (
 );
 
 CREATE TABLE PaymentTransactions (
-  payment_id int PRIMARY KEY,
+  payment_id int DEFAULT pk17_seq.nextval PRIMARY KEY,
   payment_amount int,
   payment_date date
 );
 
 CREATE TABLE Patient_Medicine (
-  pat_med_id int PRIMARY KEY,
+  pat_med_id int DEFAULT pk18_seq.nextval PRIMARY KEY,
   patient_id int,
   medicine_id int
 );
 
 CREATE TABLE Patient_Ward (
-  pat_ward_id int PRIMARY KEY,
+  pat_ward_id int DEFAULT pk19_seq.nextval PRIMARY KEY,
   patient_id int,
   ward_id int,
   admit_date date,
@@ -143,13 +142,13 @@ CREATE TABLE Patient_Ward (
 );
 
 CREATE TABLE Medicine (
-  medicine_id int PRIMARY KEY,
+  medicine_id int DEFAULT pk20_seq.nextval PRIMARY KEY,
   medicine_name varchar(20),
   quantity int
 );
 
 CREATE TABLE HospitalWard (
-  ward_id int PRIMARY KEY,
+  ward_id int DEFAULT pk21_seq.nextval PRIMARY KEY,
   ward_type varchar(20),
   building_name varchar(20),
   floor int,
@@ -157,7 +156,7 @@ CREATE TABLE HospitalWard (
 );
 
 CREATE TABLE Staff_Ward (
-  staff_ward_id int PRIMARY KEY,
+  staff_ward_id int DEFAULT pk22_seq.nextval PRIMARY KEY,
   ward_id int,
   staff_id int
 );
