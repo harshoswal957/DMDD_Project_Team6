@@ -1,3 +1,59 @@
+-- CREATE SEQUENCES FOR PKs:
+
+create sequence pk10_seq
+start with 10001
+maxvalue 10999;
+
+create sequence pk11_seq
+start with 11001
+maxvalue 11999;
+
+create sequence pk12_seq
+start with 12001
+maxvalue 12999;
+
+create sequence pk13_seq
+start with 13001
+maxvalue 13999;
+
+create sequence pk14_seq
+start with 14001
+maxvalue 14999;
+
+create sequence pk15_seq
+start with 15001
+maxvalue 15999;
+
+create sequence pk16_seq
+start with 16001
+maxvalue 16999;
+
+create sequence pk17_seq
+start with 17001
+maxvalue 17999;
+
+create sequence pk18_seq
+start with 18001
+maxvalue 18999;
+
+create sequence pk19_seq
+start with 19001
+maxvalue 19999;
+
+create sequence pk20_seq
+start with 20001
+maxvalue 20999;
+
+create sequence pk21_seq
+start with 21001
+maxvalue 21999;
+
+create sequence pk22_seq
+start with 22001
+maxvalue 22999;
+
+
+
 --CREATE TABLES:
 
 CREATE TABLE Department (
