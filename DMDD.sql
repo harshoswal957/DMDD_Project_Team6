@@ -62,12 +62,16 @@ CREATE TABLE Department (
   number_of_employees int
 );
 
+
 CREATE TABLE Patient_Doctor (
   doc_pat_id int DEFAULT pk11_seq.nextval PRIMARY KEY,
   patient_id int,
   doctor_id int,
-  appoin_date date
+  appoin_date date,
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
 );
+
 
 CREATE TABLE Laboratory (
   test_id int DEFAULT pk12_seq.nextval PRIMARY KEY,
@@ -76,8 +80,11 @@ CREATE TABLE Laboratory (
   date_of_result date,
   type_of_test varchar(20),
   test_result varchar(10),
-  staff_id int
+  staff_id int,
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
+  FOREIGN KEY (staff_id) REFERENCES Staff(staff_id)
 );
+
 
 CREATE TABLE Staff (
   staff_id int DEFAULT pk13_seq.nextval PRIMARY KEY,
@@ -86,8 +93,10 @@ CREATE TABLE Staff (
   age int,
   address varchar(50),
   department_id int,
-  shift_type varchar(10)
+  shift_type varchar(10),
+  FOREIGN KEY (department_id) REFERENCES Department(department_id)
 );
+
 
 CREATE TABLE Doctor (
   doctor_id int DEFAULT pk14_seq.nextval PRIMARY KEY,
@@ -97,16 +106,20 @@ CREATE TABLE Doctor (
   specialization varchar(20),
   date_of_birth int,
   age int,
-  department_id int
+  department_id int,
+  FOREIGN KEY (department_id) REFERENCES Department(department_id)
 );
+
 
 CREATE TABLE Inventory (
   item_id int DEFAULT pk15_seq.nextval PRIMARY KEY,
   item_name varchar(20),
   item_brand varchar(20),
   quantity int,
-  purchase_date date
+  purchase_date date,
+  FOREIGN KEY (department_id) REFERENCES Department(department_id)
 );
+
 
 CREATE TABLE Patient (
   patient_id int DEFAULT pk16_seq.nextval PRIMARY KEY,
@@ -118,8 +131,10 @@ CREATE TABLE Patient (
   age int,
   covid_19 varchar(10),
   blood_group varchar(10),
-  payment_id int
+  payment_id int,
+  FOREIGN KEY (payment_id) REFERENCES PaymentTransactions(payment_id)
 );
+
 
 CREATE TABLE PaymentTransactions (
   payment_id int DEFAULT pk17_seq.nextval PRIMARY KEY,
@@ -127,19 +142,26 @@ CREATE TABLE PaymentTransactions (
   payment_date date
 );
 
+
 CREATE TABLE Patient_Medicine (
   pat_med_id int DEFAULT pk18_seq.nextval PRIMARY KEY,
   patient_id int,
-  medicine_id int
+  medicine_id int,
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
+  FOREIGN KEY (medicine_id) REFERENCES Medicine(medicine_id)
 );
+
 
 CREATE TABLE Patient_Ward (
   pat_ward_id int DEFAULT pk19_seq.nextval PRIMARY KEY,
   patient_id int,
   ward_id int,
   admit_date date,
-  dischardge_date date
+  dischardge_date date,
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
+  FOREIGN KEY (ward_id) REFERENCES HospitalWard(ward_id)
 );
+
 
 CREATE TABLE Medicine (
   medicine_id int DEFAULT pk20_seq.nextval PRIMARY KEY,
@@ -147,16 +169,21 @@ CREATE TABLE Medicine (
   quantity int
 );
 
+
 CREATE TABLE HospitalWard (
   ward_id int DEFAULT pk21_seq.nextval PRIMARY KEY,
   ward_type varchar(20),
   building_name varchar(20),
   floor int,
-  staff_id int
+  staff_id int,
+  FOREIGN KEY (staff_id) REFERENCES Staff(staff_id)
 );
+
 
 CREATE TABLE Staff_Ward (
   staff_ward_id int DEFAULT pk22_seq.nextval PRIMARY KEY,
   ward_id int,
-  staff_id int
+  staff_id int,
+  FOREIGN KEY (staff_id) REFERENCES Staff(staff_id),
+  FOREIGN KEY (ward_id) REFERENCES HospitalWard(ward_id)
 );
