@@ -351,3 +351,69 @@ INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Pemoline',1000);
 INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Valtropin',350);
 INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Kantrex',12550);
 INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Keflex',32000);
+
+--Inventory Table
+
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Oxygen Cylinder','Abbott',25,'16-Dec-2020',10004);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Pulse Oxymeter','Johnson and Johnson',32,'16-Dec-2020',10004);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Defibrillator','General Electric Company',8,'16-Dec-2020',10004);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Sanitizer','Becton, Dickinson and Company',60,'16-Dec-2020',10004);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Nitrile Gloves','Becton, Dickinson and Company',70,'24-Dec-2020',10004);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Drape','Dr Schumacher India',23,'31-Dec-2020',10004);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Surgeon Blade','Abbott',25,'31-Dec-2020',10004);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Sterile Gloves','Becton, Dickinson and Company',40,'24-Dec-2020',10004);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Disposable Gown','Abbott',25,'31-Dec-2020',10004);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('IV set','Johnson and Johnson',15,'16-Dec-2020',10004);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Thermometer','Abbott',20,'10-Dec-2020',10004);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Vials','Becton, Dickinson and Company',50,'15-Dec-2020',10007);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Test tubes','Dr Schumacher India',30,'17-Dec-2020',10007);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Syringes','Dr Schumacher India',46,'25-Dec-2020',10007);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Spirit Solution','Becton, Dickinson and Company',6,'25-Dec-2020',10007);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Stethoscope','Dr Schumacher India',10,'20-Dec-2020',10006);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Patient Documents Folder','VM Stationary',60,'7-Dec-2020',10002);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Desktop','Microsoft',12,'3-Nov-2020',10001);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Office Stationary','Staples',40,'11-Nov-2020',10002);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('ipad','Apple',10,'3-Nov-2020',10002);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Standard bedpan','Medicare',12,'7-Aug-2020',10003);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Bath basins','Medicare',24,'27-Aug-2020',10003);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Wheelchair','RK Enterprises',20,'11-Jun-2020',10003);
+INSERT INTO INVENTORY (item_name, item_brand, quantity, purchase_date, department_id) VALUES('Walker','MSH Surigicals',30,'3-Jun-2020',10003);
+
+--Staff Table
+
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Raj','Yadav',28,'155 MG ROAD',10001,'DAY');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Mitali','Gupta',30,'32 FC ROAD',10002,'DAY');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Khajan','Joshi',28,'321 CHARLES DRIVE',10003,'NIGHT');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Ishita','Gandhi',26,'32 MULBERRY STREET',10004,'NIGHT');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Harsh','Oswal',27,'365 HEMINGWAY DRIVE',10005,'DAY');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Ishana','Rajguru',32,'25  PRINCEWAY CROSSING',10006,'NIGHT');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Sumit','Chawla',23,'1416 ST ALPHONSUS STREET',10007,'DAY');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Parth','Denver',45,'332 RIVERWAY APARTMENT',10003,'DAY');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Akhil','Srivastav',76,'35 MASS AVENUE',10003,'NIGHT');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('John','Snow',89,'360 TREMONT STREET',10003,'DAY');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Steve','Mathew',45,'141 WALDHOM',10001,'NIGHT');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Anish','Bafna',23,'26 JESSICA DRIVE',10002,'NIGHT');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Lee','Hang',43,'14 PARKER HILL',10004,'DAY');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Xinyu','Xang',32,'55 JAMES WILLIAM PARK',10003,'DAY');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Loo','Xee',67,'43 BRINGHAMTON CIRCLE',10007,'NIGHT');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Nancy','Parker',81,'23 RIVERWAY APRTMENTS',10006,'DAY');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Bryan','Fullerton',45,'100 TREMONT STREET',10005,'NIGHT');
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('Adam','Lavigne',55,'526 HUNTIGTON AVENUE',10001,'NIGHT');
+
+--Patient_Doctor Table
+
+INSERT INTO Patient_Doctor (patient_id,doctor_id,appoin_date) VALUES (16001,14001,'28-May-21');
+INSERT INTO Patient_Doctor (patient_id,doctor_id,appoin_date) VALUES (16002,14004,'20-May-21');
+INSERT INTO Patient_Doctor (patient_id,doctor_id,appoin_date) VALUES (16003,14003,'18-May-21');
+INSERT INTO Patient_Doctor (patient_id,doctor_id,appoin_date) VALUES (16004,14002,'21-May-21');
+INSERT INTO Patient_Doctor (patient_id,doctor_id,appoin_date) VALUES (16005,14001,'22-May-21');
+INSERT INTO Patient_Doctor (patient_id,doctor_id,appoin_date) VALUES (16006,14008,'05-May-21');
+INSERT INTO Patient_Doctor (patient_id,doctor_id,appoin_date) VALUES (16007,14004,'22-May-21');
+INSERT INTO Patient_Doctor (patient_id,doctor_id,appoin_date) VALUES (16008,14006,'28-May-21');
+INSERT INTO Patient_Doctor (patient_id,doctor_id,appoin_date) VALUES (16009,14003,'23-May-21');
+INSERT INTO Patient_Doctor (patient_id,doctor_id,appoin_date) VALUES (16010,14005,'19-May-21');
+INSERT INTO Patient_Doctor (patient_id,doctor_id,appoin_date) VALUES (16011,14007,'16-May-21');
+INSERT INTO Patient_Doctor (patient_id,doctor_id,appoin_date) VALUES (16012,14002,'24-May-21');
+INSERT INTO Patient_Doctor (patient_id,doctor_id,appoin_date) VALUES (16013,14002,'29-May-21');
+INSERT INTO Patient_Doctor (patient_id,doctor_id,appoin_date) VALUES (16014,14003,'22-May-21');
+INSERT INTO Patient_Doctor (patient_id,doctor_id,appoin_date) VALUES (16015,14001,'23-May-21');
