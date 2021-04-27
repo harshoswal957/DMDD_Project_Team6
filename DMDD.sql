@@ -187,3 +187,66 @@ CREATE TABLE Staff_Ward (
   FOREIGN KEY (staff_id) REFERENCES Staff(staff_id),
   FOREIGN KEY (ward_id) REFERENCES HospitalWard(ward_id)
 );
+
+
+--Data Insertion 
+
+--Patient Table
+
+INSERT INTO PATIENT (first_name, last_name, address, insurance, date_of_birth, age, covid_19, blood_group, payment_id) VALUES('RICHARD','GILL','350 RIVERWAY','YES','26-Jan-1998',23,'NO','B+',17001);
+INSERT INTO PATIENT (first_name, last_name, address, insurance, date_of_birth, age, covid_19, blood_group, payment_id) VALUES('MARY','HALL','150 TREMONT STREET','YES','14-Mar-1999',22,'NO','AB+',17002);
+INSERT INTO PATIENT (first_name, last_name, address, insurance, date_of_birth, age, covid_19, blood_group, payment_id) VALUES('JACOB','BAKER','11 TETLOW STREET','NO','7-Sep-1988',32,'NO','O-',17003);
+INSERT INTO PATIENT (first_name, last_name, address, insurance, date_of_birth, age, covid_19, blood_group, payment_id) VALUES('SMITH','RIVERA','34 SOMERVILLE','YES','23-Aug-2002',18,'YES','A+',17004);
+INSERT INTO PATIENT (first_name, last_name, address, insurance, date_of_birth, age, covid_19, blood_group, payment_id) VALUES('ADAMS','GREENS','50 OAKLAND AVE','YES','10-Feb-2011',10,'YES','B+',17005);
+INSERT INTO PATIENT (first_name, last_name, address, insurance, date_of_birth, age, covid_19, blood_group, payment_id) VALUES('JOHN','FLORES','42 DOWNTOWN STREET','NO','20-April-1998',23,'NO','AB+',17006);
+INSERT INTO PATIENT (first_name, last_name, address, insurance, date_of_birth, age, covid_19, blood_group, payment_id) VALUES('CAMPBELL','ROGERS','345 LACANIA STREET','YES','19-July-1987',33,'NO','B+',17007);
+INSERT INTO PATIENT (first_name, last_name, address, insurance, date_of_birth, age, covid_19, blood_group, payment_id) VALUES('NELSON','CARTER','92 DAKOTA ROAD','NO','1-Jan-2018',3,'YES','AB+',17008);
+INSERT INTO PATIENT (first_name, last_name, address, insurance, date_of_birth, age, covid_19, blood_group, payment_id) VALUES('HIMANSHU','SINGH','75 ALPES STREET','YES','15-March-1999',22,'NO','B+',17009);
+INSERT INTO PATIENT (first_name, last_name, address, insurance, date_of_birth, age, covid_19, blood_group, payment_id) VALUES('ROBERT','LIAM','25 MG STREET','YES','24-April-1978',43,'NO','O+',17010);
+INSERT INTO PATIENT (first_name, last_name, address, insurance, date_of_birth, age, covid_19, blood_group, payment_id) VALUES('AMY','SANTIAGO','144 BAKER STREET','NO','15-Mar-1994',26,'YES','AB-',17011);
+INSERT INTO PATIENT (first_name, last_name, address, insurance, date_of_birth, age, covid_19, blood_group, payment_id) VALUES('JAKE','PERALTA','54 CAMBRIDGE','YES','15-Apr-1975',46,'NO','A+',17012);
+INSERT INTO PATIENT (first_name, last_name, address, insurance, date_of_birth, age, covid_19, blood_group, payment_id) VALUES('ROSA','DIAZ','66 ATLANTA ','NO','4-Dec-2019',1,'NO','B+',17013);
+INSERT INTO PATIENT (first_name, last_name, address, insurance, date_of_birth, age, covid_19, blood_group, payment_id) VALUES('TEDDY','JEFORDS','352 RIVERWAY','YES','27-Nov-2002',18,'NO','AB-',17014);
+INSERT INTO PATIENT (first_name, last_name, address, insurance, date_of_birth, age, covid_19, blood_group, payment_id) VALUES('CHARLES','BOYLE','92 ORN STREET','NO','16-Jan-1992',29,'NO','O+',17015);
+
+
+--PaymentTransactions TABLE
+
+INSERT INTO PAYMENTTRANSACTIONS (payment_amount, payment_date,patient_id) VALUES (1200,'2-Jan-2021',16001);
+INSERT INTO PAYMENTTRANSACTIONS (payment_amount, payment_date,patient_id) VALUES (200,'2-Jan-2021',16002);
+INSERT INTO PAYMENTTRANSACTIONS (payment_amount, payment_date,patient_id) VALUES (345,'3-Jan-2021',16003);
+INSERT INTO PAYMENTTRANSACTIONS (payment_amount, payment_date,patient_id) VALUES (650,'5-Jan-2021',16004);
+INSERT INTO PAYMENTTRANSACTIONS (payment_amount, payment_date,patient_id) VALUES (2000,'5-Jan-2021',16005);
+INSERT INTO PAYMENTTRANSACTIONS (payment_amount, payment_date,patient_id) VALUES (120,'5-Jan-2021',16006);
+INSERT INTO PAYMENTTRANSACTIONS (payment_amount, payment_date,patient_id) VALUES (560,'6-Jan-2021',16007);
+INSERT INTO PAYMENTTRANSACTIONS (payment_amount, payment_date,patient_id) VALUES (1400,'6-Jan-2021',16008);
+INSERT INTO PAYMENTTRANSACTIONS (payment_amount, payment_date,patient_id) VALUES (1145,'7-Jan-2021',16009);
+INSERT INTO PAYMENTTRANSACTIONS (payment_amount, payment_date,patient_id) VALUES (675,'7-Jan-2021',16010);
+INSERT INTO PAYMENTTRANSACTIONS (payment_amount, payment_date,patient_id) VALUES (190,'8-Jan-2021',16011);
+INSERT INTO PAYMENTTRANSACTIONS (payment_amount, payment_date,patient_id) VALUES (650,'8-Jan-2021',16012);
+INSERT INTO PAYMENTTRANSACTIONS (payment_amount, payment_date,patient_id) VALUES (995,'8-Jan-2021',16013);
+INSERT INTO PAYMENTTRANSACTIONS (payment_amount, payment_date,patient_id) VALUES (435,'9-Jan-2021',16014);
+INSERT INTO PAYMENTTRANSACTIONS (payment_amount, payment_date,patient_id) VALUES (4500,'9-Jan-2021',16015);
+
+
+--Department table
+
+INSERT INTO DEPARTMENT (department_name, hod_name, number_of_employees) VALUES ('Finance','RAMAN GOEL',3);
+INSERT INTO DEPARTMENT (department_name, hod_name, number_of_employees) VALUES ('Management','MAY GREENS',5);
+INSERT INTO DEPARTMENT (department_name, hod_name, number_of_employees) VALUES ('Nurse','BO CHAN',24);
+INSERT INTO DEPARTMENT (department_name, hod_name, number_of_employees) VALUES ('Housekeeping','TOM ROBERTS',10);
+INSERT INTO DEPARTMENT (department_name, hod_name, number_of_employees) VALUES ('AssociateDoctor','RACHAEL ',5);
+INSERT INTO DEPARTMENT (department_name, hod_name, number_of_employees) VALUES ('SeniorDoctor','ELI FISHER',3);
+INSERT INTO DEPARTMENT (department_name, hod_name, number_of_employees) VALUES ('LabStaff','CHRIS EVANS',5);
+
+
+--Doctor TABLE
+
+INSERT INTO DOCTOR (first_name, last_name, address, specialization, date_of_birth, age, department_id) VALUES('EMMA ','WILLIAM','777 BROCKTON AVENEUE','CARDIOLOGIST','19-July-1987',33,10006);
+INSERT INTO DOCTOR (first_name, last_name, address, specialization, date_of_birth, age, department_id) VALUES('JACOB','BROWN','250 HARTFORD AVENUE','DERMATOLOGIST','28-Sep-1993',27,10005);
+INSERT INTO DOCTOR (first_name, last_name, address, specialization, date_of_birth, age, department_id) VALUES('MASON','MILLER','337 RESELL STREET','DENTIST','25-Jan-1990',31,10005);
+INSERT INTO DOCTOR (first_name, last_name, address, specialization, date_of_birth, age, department_id) VALUES('OLIVIA','DAVIS','200 OTIS STREET','GYNACOLOGIST','3-Oct-1991',29,10006);
+INSERT INTO DOCTOR (first_name, last_name, address, specialization, date_of_birth, age, department_id) VALUES('LILY','LOPEZ','115 BOSTON ROAD','GYNACOLOGIST','16-April-1995',26,10005);
+INSERT INTO DOCTOR (first_name, last_name, address, specialization, date_of_birth, age, department_id) VALUES('CHLOE','THOMAS','333 MAIN STREET','ENT','5-Aug-1989',31,10006);
+INSERT INTO DOCTOR (first_name, last_name, address, specialization, date_of_birth, age, department_id) VALUES('DANIEL','MOORE','100 CHARLTON ROAD','GYNACOLOGIST','22-Feb-1981',40,10005);
+INSERT INTO DOCTOR (first_name, last_name, address, specialization, date_of_birth, age, department_id) VALUES('JAMES','PEREZ','340 PALMER ROAD','CARDIOLOGIST','28-May-1985',35,10006);
