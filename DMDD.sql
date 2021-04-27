@@ -67,9 +67,7 @@ CREATE TABLE Patient_Doctor (
   doc_pat_id int DEFAULT pk11_seq.nextval PRIMARY KEY,
   patient_id int,
   doctor_id int,
-  appoin_date date,
- CONSTRAINT FK_PD_PID FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
- CONSTRAINT FK_PD_DID FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
+  appoin_date date
 );
 
 
@@ -80,9 +78,7 @@ CREATE TABLE Laboratory (
   date_of_result date,
   type_of_test varchar(20),
   test_result varchar(10),
-  staff_id int,
- CONSTRAINT FK_LAB_PID FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
- CONSTRAINT FK_LAB_STAFFID FOREIGN KEY (staff_id) REFERENCES Staff(staff_id)
+  staff_id int
 );
 
 
@@ -93,8 +89,7 @@ CREATE TABLE Staff (
   age int,
   address varchar(50),
   department_id int,
-  shift_type varchar(10),
-  CONSTRAINT FK_STAFF_DID FOREIGN KEY (department_id) REFERENCES Department(department_id)
+  shift_type varchar(10)
 );
 
 
@@ -106,8 +101,7 @@ CREATE TABLE Doctor (
   specialization varchar(20),
   date_of_birth date,
   age int,
-  department_id int,
-  CONSTRAINT FK_DOC_DEPTID FOREIGN KEY (department_id) REFERENCES Department(department_id)
+  department_id int
 );
 
 
@@ -116,8 +110,7 @@ CREATE TABLE Inventory (
   item_name varchar(20),
   item_brand varchar(20),
   quantity int,
-  purchase_date date,
-  CONSTRAINT FK_INV_DEPTID FOREIGN KEY (department_id) REFERENCES Department(department_id)
+  purchase_date date
 );
 
 
@@ -131,8 +124,7 @@ CREATE TABLE Patient (
   age int,
   covid_19 varchar(10),
   blood_group varchar(10),
-  payment_id int,
-  CONSTRAINT FK_P_PAYID FOREIGN KEY (payment_id) REFERENCES PaymentTransactions(payment_id)
+  payment_id int
 );
 
 
@@ -140,18 +132,16 @@ CREATE TABLE PaymentTransactions (
   payment_id int DEFAULT pk17_seq.nextval PRIMARY KEY,
   payment_amount int,
   payment_date date, 
-  patient_id int,
-  CONSTRAINT FK_PT_PID FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
+  patient_id int
 );
 
 
 CREATE TABLE Patient_Medicine (
   pat_med_id int DEFAULT pk18_seq.nextval PRIMARY KEY,
   patient_id int,
-  medicine_id int,
-  CONSTRAINT FK_PM_PID  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
-  CONSTRAINT FK_PM_MID FOREIGN KEY (medicine_id) REFERENCES Medicine(medicine_id)
+  medicine_id int
 );
+
 
 
 CREATE TABLE Patient_Ward (
@@ -159,9 +149,7 @@ CREATE TABLE Patient_Ward (
   patient_id int,
   ward_id int,
   admit_date date,
-  dischardge_date date,
-  CONSTRAINT FK_PW_PID FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
-  CONSTRAINT FK_PW_HW FOREIGN KEY (ward_id) REFERENCES HospitalWard(ward_id)
+  dischardge_date date
 );
 
 
@@ -177,17 +165,14 @@ CREATE TABLE HospitalWard (
   ward_type varchar(20),
   building_name varchar(20),
   floor int,
-  staff_id int,
-  CONSTRAINT FK_HW_STAFFID FOREIGN KEY (staff_id) REFERENCES Staff(staff_id)
+  staff_id int
 );
 
 
 CREATE TABLE Staff_Ward (
   staff_ward_id int DEFAULT pk22_seq.nextval PRIMARY KEY,
   ward_id int,
-  staff_id int,
-  CONSTRAINT FK_SW_SID FOREIGN KEY (staff_id) REFERENCES Staff(staff_id),
-  CONSTRAINT FK_SW_WARDID FOREIGN KEY (ward_id) REFERENCES HospitalWard(ward_id)
+  staff_id int
 );
 
 --Disabling Constraint
