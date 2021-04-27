@@ -250,3 +250,73 @@ INSERT INTO DOCTOR (first_name, last_name, address, specialization, date_of_birt
 INSERT INTO DOCTOR (first_name, last_name, address, specialization, date_of_birth, age, department_id) VALUES('CHLOE','THOMAS','333 MAIN STREET','ENT','5-Aug-1989',31,10006);
 INSERT INTO DOCTOR (first_name, last_name, address, specialization, date_of_birth, age, department_id) VALUES('DANIEL','MOORE','100 CHARLTON ROAD','GYNACOLOGIST','22-Feb-1981',40,10005);
 INSERT INTO DOCTOR (first_name, last_name, address, specialization, date_of_birth, age, department_id) VALUES('JAMES','PEREZ','340 PALMER ROAD','CARDIOLOGIST','28-May-1985',35,10006);
+
+
+--HospitalWard Table
+
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('GENERAL','NEW',1,10002);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('GENERAL','NEW',1,10002);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('GENERAL','NEW',1,10010);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('GENERAL','OLD',2,10008);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('PRIVATE','NEW',3,10009);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('PRIVATE','NEW',3,10009);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('PRIVATE','OLD',3,10009);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('PRIVATE','OLD',2,10008);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('EMERGENCY','NEW',1,10010);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('EMERGENCY','NEW',1,10010);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('EMERGENCY','OLD',1,10014);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('EMERGENCY','OLD',1,10014);
+
+
+
+
+--Laboratory Project
+
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16003,'25-Jan-21','27-Jan-21','Covid RT-PCR','Abnormal',15001);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16015,'27-Jan-21','27-Jan-21','Hemogram Blood Test','Normal',15002);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16007,'26-Jan-21','26-Jan-21','Haemoglobin','Normal',15003);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16010,'18-Jan-21','18-Jan-21','Creatin Test','Normal',15002);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16001,'26-Jan-21','26-Jan-21','Stool Test','Abnormal',15004);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16013,'30-Jan-21','30-Jan-21','X-ray','Normal',15008);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16005,'02-Jan-21','02-Jan-21','Lipid Profile','Abnormal',15009);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16006,'02-Feb-21','02-Feb-21','Urionogram','Abnormal',15006);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16004,'05-Feb-21','05-Feb-21','Cardiac Risk Markers','Normal',15010);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16011,'06-Feb-21','06-Feb-21','Haemoglobin','Abnormal',15011);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16007,'07-Feb-21','07-Feb-21','Covid RT-PCR','Abnormal',15001);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16012,'10-Mar-21','10-Mar-21','Lipid Profile','Normal',15012);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16008,'12-Feb-21','12-Feb-21','Covid RT-PCR','Abnormal',15001);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16002,'13-Feb-21','13-Feb-21','Covid RT-PCR','Normal',15001);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16014,'15-Feb-21','15-Feb-21','Cardiac Risk Markers','Normal',15010);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16013,'16-Feb-21','16-Feb-21','Urionogram','Abnormal',15014);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16001,'18-Feb-21','18-Feb-21','Haemoglobin','Abnormal',15013);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16009,'18-Feb-21','18-Feb-21','Covid RT-PCR','Normal',15001);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16008,'19-Feb-21','19-Feb-21','Cardiac Risk Markers','Normal',15008);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16011,'20-Feb-21','20-Feb-21','Hemogram Blood Test','Abnormal',15012);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16015,'22-Feb-21','22-Feb-21','Covid RT-PCR','Normal',15001);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16006,'24-Feb-21','24-Feb-21','Covid RT-PCR','Normal',15001);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16010,'27-Feb-21','27-Feb-21','Lipid Profile','Abnormal',15004);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16013,'28-Feb-21','28-Feb-21','Hemogram Blood Test','Normal',15008);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16014,'01-Mar-21','01-Mar-21','Cardiac Risk Markers','Abnormal',15009);
+
+--Medicine Table
+
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Crocin',10000);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Cephalexin',50000);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Dolo',23000);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Lisinopril',34650);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Amlodipine',500);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Valcyte',3400);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Acarbose',67000);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Gabitril',12500);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Papain',45600);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Matulane',2990);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Gantrisin',4300);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Rapaflo',45000);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Mannitol',25000);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Tabloid',10000);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Zadaxin',35000);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Zemplar',200);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Pemoline',1000);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Valtropin',350);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Kantrex',12550);
+INSERT INTO MEDICINE (medicine_name, quantity) VALUES ('Keflex',32000);
