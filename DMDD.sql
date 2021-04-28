@@ -833,3 +833,21 @@ WHERE a.patient_id = patid_in;
 												
 END get_appoin_details;												
 /												
+
+SET SERVEROUTPUT ON;						
+--Anonymous block						
+DECLARE						
+aptdate_var date;						
+docid_var int;						
+docfname_var VARCHAR(50);						
+doclname_var VARCHAR(50);						
+docspec_var VARCHAR(50);						
+BEGIN						
+get_appoin_details(&patientid, aptdate_var, docid_var, docfname_var, doclname_var, docspec_var);						
+dbms_output.put_line('Appointment date = '||aptdate_var);						
+dbms_output.put_line('doctor id = '||docid_var);						
+dbms_output.put_line('doctor first name = '||docfname_var);						
+dbms_output.put_line('doctor last name = '||doclname_var);						
+dbms_output.put_line('doctor specialization = '||docspec_var);						
+END;						
+/						
