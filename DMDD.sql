@@ -651,3 +651,25 @@ JOIN Patient_Ward a ON p.patient_id=a.patient_id
 WHERE (covid_19= 'Yes');				
 						
 GRANT SELECT,INSERT,UPDATE,DELETE ON view_payment_transaction TO reception;				
+
+
+--DOCTOR VIEWS
+CREATE VIEW view_Doctor_patient AS
+SELECT patient_id, doctor_id, appoin_date
+FROM Patient_Doctor;
+
+CREATE VIEW view_Doctor AS
+SELECT patient_id, first_name, last_name,address,date_of_birth,age,covid_19,blood_group
+FROM Patient;
+
+--DOCTOR USER
+CREATE USER doc123 IDENTIFIED BY Doctor654321;
+
+--DOCTOR USER PERMISSIONS
+GRANT CONNECT TO doc123;
+GRANT SELECT ON view_Doctor TO doc123;
+GRANT SELECT ON view_Doctor_Patient TO doc123;
+
+--INDEX
+CREATE INDEX find_patient
+ON patient(first_name);
