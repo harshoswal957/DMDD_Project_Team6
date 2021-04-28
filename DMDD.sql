@@ -623,3 +623,31 @@ INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALU
 INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16013,19012,'03-Jun-20','09-Jun-20');
 INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16014,19006,'04-Jun-20','04-Jun-20');
 INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16015,19010,'05-Jun-20','08-Jun-20');
+
+
+--Views 
+
+--reception view
+
+CREATE VIEW view_reception_patient AS						
+SELECT patient_id, first_name, last_name,address,insurance,date_of_birth,age,covid_19,blood_group,payment_id						
+FROM Patient;						
+CREATE USER reception IDENTIFIED BY Hospital654321;						
+						
+GRANT CONNECT TO reception;						
+						
+GRANT SELECT,INSERT,UPDATE,DELETE ON view_reception_patient TO reception;						
+						
+CREATE VIEW view_payment_transaction AS						
+SELECT payment_id, payment_amount,payment_date						
+FROM PaymentTransactions;		
+
+--DISPALY WARD NUMBER OF COVID PATIENT								
+SELECT p.first_name AS "Patient",		
+a.ward_id AS "Room No.",		
+a.admit_date AS "Date and Time of admission"		
+FROM patient p		
+JOIN Patient_Ward a ON p.patient_id=a.patient_id		
+WHERE (covid_19= 'Yes');				
+						
+GRANT SELECT,INSERT,UPDATE,DELETE ON view_payment_transaction TO reception;				
