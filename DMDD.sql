@@ -744,7 +744,91 @@ GRANT CONNECT TO doc123;
 GRANT SELECT ON view_Doctor TO doc123;
 GRANT SELECT ON view_Doctor_Patient TO doc123;
 
+
+--Analyst Views
+
+CREATE VIEW VIEW_ANALYST_DEPARTMENT
+AS SELECT department_name, hod_name, number_of_employees
+FROM department;
+
+CREATE VIEW VIEW_ANALYST_DOCTOR
+AS SELECT  doctor_id,first_name,last_name,address,specialization,date_of_birth,age,department_id
+FROM doctor;
+
+CREATE VIEW VIEW_ANALYST_HOSPITALWARD
+AS SELECT ward_id,ward_type, building_name, floor, staff_id
+FROM hospitalward;
+
+
+CREATE VIEW VIEW_ANALYST_LABORATORY
+AS SELECT test_id, patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id
+FROM laboratory;
+
+
+CREATE VIEW VIEW_ANALYST_MEDICINE
+AS SELECT medicine_id, medicine_name, quantity
+FROM medicine;
+
+CREATE VIEW VIEW_ANALYST_PATIENT
+AS SELECT  patient_id,first_name,last_name,address,insurance,date_of_birth,age,covid_19,blood_group,payment_id
+FROM Patient;
+
+CREATE VIEW VIEW_ANALYST_PATIENTDOCTOR
+AS SELECT doc_pat_id, patient_id, doctor_id, appoin_date
+FROM Patient_Doctor;
+
+CREATE VIEW VIEW_ANALYST_PAYMENTTRANSACTION
+AS SELECT  payment_amount, payment_date,payment_id
+FROM paymenttransactions;
+
+CREATE VIEW VIEW_ANALYST_STAFF
+AS SELECT staff_id, first_name, last_name, age, address, department_id, shift_type
+FROM  staff;
+
+
+CREATE VIEW VIEW_ANALYST_INVENTORY
+AS SELECT item_id, item_name, item_brand, quantity, purchase_date, department_id
+FROM  Inventory;
+
+
+
+CREATE VIEW VIEW_ANALYST_STAFFWARD
+AS SELECT staff_ward_id,ward_id,staff_id
+FROM  staffward;
+
+
+CREATE VIEW VIEW_ANALYST_PATIENTWARD
+AS SELECT patient_ward_id,ward_id,patient_id,admit_date,discharge_date
+FROM  patientward;
+
+
+
+CREATE VIEW VIEW_ANALYST_MEDICINEWARD
+AS SELECT patient_med_id,patient_id,medicine_id
+FROM  medicineward;
+
+--Analyst User
+CREATE USER analyst IDENTIFIED BY Analyst654321;
+
+GRANT CONNECT TO analyst;
+
+--Analyst User Permissions
+GRANT SELECT ON VIEW_ANALYST_DEPARTMENT to analyst;
+GRANT SELECT ON VIEW_ANALYST_DOCTOR to analyst;
+GRANT SELECT ON VIEW_ANALYST_HOSPITALWARD to analyst;
+GRANT SELECT ON VIEW_ANALYST_INVENTORY to analyst;
+GRANT SELECT ON VIEW_ANALYST_STAFFWARD to analyst;
+GRANT SELECT ON VIEW_ANALYST_PATIENTWARD to analyst;
+GRANT SELECT ON VIEW_ANALYST_MEDICINEWARD to analyst;
+GRANT SELECT ON VIEW_ANALYST_STAFF to analyst;
+GRANT SELECT ON VIEW_ANALYST_PAYMENTTRANSACTION to analyst;
+GRANT SELECT ON VIEW_ANALYST_PATIENTDOCTOR to analyst;
+GRANT SELECT ON VIEW_ANALYST_MEDICINE to analyst;
+GRANT SELECT ON VIEW_ANALYST_PATIENT to analyst;
+GRANT SELECT ON VIEW_ANALYST_LABORATORY to analyst;
+
+
+
 --INDEX
 CREATE INDEX find_patient
 ON patient(first_name);
-
