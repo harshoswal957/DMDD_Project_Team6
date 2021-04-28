@@ -107,10 +107,11 @@ CREATE TABLE Doctor (
 
 CREATE TABLE Inventory (
   item_id int DEFAULT pk15_seq.nextval PRIMARY KEY,
-  item_name varchar(20),
-  item_brand varchar(20),
+  item_name varchar(30),
+  item_brand varchar(50),
   quantity int,
-  purchase_date date
+  purchase_date date,
+  department_id int
 );
 
 
@@ -175,6 +176,36 @@ CREATE TABLE Staff_Ward (
   staff_id int
 );
 
+--Creating foreign key Constraint
+  ALTER TABLE PATIENT_DOCTOR ADD CONSTRAINT FK_PD_PID FOREIGN KEY (patient_id) REFERENCES Patient(patient_id);
+  ALTER TABLE PATIENT_DOCTOR ADD CONSTRAINT FK_PD_DID FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id);
+
+  ALTER TABLE LABORATORY ADD CONSTRAINT FK_LAB_PID FOREIGN KEY (patient_id) REFERENCES Patient(patient_id);
+  ALTER TABLE LABORATORY ADD CONSTRAINT FK_LAB_STAFFID FOREIGN KEY (staff_id) REFERENCES Staff(staff_id);
+
+  ALTER TABLE STAFF ADD CONSTRAINT FK_STAFF_DID FOREIGN KEY (department_id) REFERENCES Department(department_id);
+
+  ALTER TABLE DOCTOR ADD CONSTRAINT FK_DOC_DEPTID FOREIGN KEY (department_id) REFERENCES Department(department_id);
+
+  ALTER TABLE INVENTORY ADD CONSTRAINT FK_INV_DEPTID FOREIGN KEY (department_id) REFERENCES Department(department_id);
+
+  ALTER TABLE PATIENT ADD CONSTRAINT FK_P_PAYID FOREIGN KEY (payment_id) REFERENCES PaymentTransactions(payment_id);
+
+  ALTER TABLE PAYMENTTRANSACTIONS ADD CONSTRAINT FK_PT_PID FOREIGN KEY (patient_id) REFERENCES Patient(patient_id);
+
+  ALTER TABLE PATIENT_MEDICINE ADD CONSTRAINT FK_PM_PID  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id);
+  ALTER TABLE PATIENT_MEDICINE ADD CONSTRAINT FK_PM_MID FOREIGN KEY (medicine_id) REFERENCES Medicine(medicine_id);
+
+  ALTER TABLE PAYMENTTRANSACTIONS ADD CONSTRAINT FK_PT_PID FOREIGN KEY (patient_id) REFERENCES Patient(patient_id);
+
+  ALTER TABLE PATIENT_WARD ADD CONSTRAINT FK_PW_PID FOREIGN KEY (patient_id) REFERENCES Patient(patient_id);
+  ALTER TABLE PATIENT_WARD ADD CONSTRAINT FK_PW_HW FOREIGN KEY (ward_id) REFERENCES HospitalWard(ward_id);
+
+  ALTER TABLE HOSPITALWARD ADD CONSTRAINT FK_HW_STAFFID FOREIGN KEY (staff_id) REFERENCES Staff(staff_id);
+
+  ALTER TABLE STAFF_WARD ADD CONSTRAINT FK_SW_SID FOREIGN KEY (staff_id) REFERENCES Staff(staff_id);
+  ALTER TABLE STAFF_WARD ADD CONSTRAINT FK_SW_WARDID FOREIGN KEY (ward_id) REFERENCES HospitalWard(ward_id);
+
 --Disabling Constraint
 
 ALTER TABLE Staff_Ward
@@ -214,10 +245,9 @@ DISABLE CONSTRAINT FK_LAB_STAFFID ;
 
 ALTER TABLE PATIENT_DOCTOR
 DISABLE CONSTRAINT FK_PD_PID ;
+
 ALTER TABLE PATIENT_DOCTOR
 DISABLE CONSTRAINT FK_PD_DID ;
-
-
 
 
 --Data Insertion 
@@ -673,3 +703,4 @@ GRANT SELECT ON view_Doctor_Patient TO doc123;
 --INDEX
 CREATE INDEX find_patient
 ON patient(first_name);
+
