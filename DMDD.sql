@@ -850,4 +850,31 @@ dbms_output.put_line('doctor first name = '||docfname_var);
 dbms_output.put_line('doctor last name = '||doclname_var);						
 dbms_output.put_line('doctor specialization = '||docspec_var);						
 END;						
+/	
+
+
+--Procedure to get department details with staff_id as input						
+						
+CREATE OR REPLACE PROCEDURE get_staff_details( staffid_in IN INT ,department_name_out OUT VARCHAR)						
+IS						
+BEGIN						
+DBMS_OUTPUT.PUT_LINE('THANK YOU FOR CHECKING. STAFF DETAILS ARE BELOW:');						
+						
+SELECT  a.department_name INTO department_name_out						
+FROM department a JOIN staff b						
+ON a.department_id = b.department_id						
+WHERE b.staff_id = staffid_in;						
+						
+END get_staff_details;						
+/												
+						
+SET SERVEROUTPUT ON;						
+--Anonymous block						
+DECLARE												
+department_name VARCHAR(50);																		
+BEGIN						
+get_staff_details(&staffid,  department_name);												
+dbms_output.put_line('Department name = '||department_name);												
+END;						
 /						
+											
