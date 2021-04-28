@@ -196,8 +196,6 @@ CREATE TABLE Staff_Ward (
   ALTER TABLE PATIENT_MEDICINE ADD CONSTRAINT FK_PM_PID  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id);
   ALTER TABLE PATIENT_MEDICINE ADD CONSTRAINT FK_PM_MID FOREIGN KEY (medicine_id) REFERENCES Medicine(medicine_id);
 
-  ALTER TABLE PAYMENTTRANSACTIONS ADD CONSTRAINT FK_PT_PID FOREIGN KEY (patient_id) REFERENCES Patient(patient_id);
-
   ALTER TABLE PATIENT_WARD ADD CONSTRAINT FK_PW_PID FOREIGN KEY (patient_id) REFERENCES Patient(patient_id);
   ALTER TABLE PATIENT_WARD ADD CONSTRAINT FK_PW_HW FOREIGN KEY (ward_id) REFERENCES HospitalWard(ward_id);
 
@@ -698,34 +696,28 @@ ALTER TABLE PATIENT_DOCTOR
 ENABLE CONSTRAINT FK_PD_DID ;
 
 
+--RENAME COLUMN NAME
+ALTER TABLE PATIENT_WARD RENAME COLUMN DISCHARDGE_DATE TO DISCHARGE_DATE;
 
 --Views 
 
 --reception view
-
 CREATE VIEW view_reception_patient AS						
 SELECT patient_id, first_name, last_name,address,insurance,date_of_birth,age,covid_19,blood_group,payment_id						
-FROM Patient;						
-CREATE USER reception IDENTIFIED BY Hospital654321;						
-						
-GRANT CONNECT TO reception;						
-						
-GRANT SELECT,INSERT,UPDATE,DELETE ON view_reception_patient TO reception;						
+FROM Patient;											
 						
 CREATE VIEW view_payment_transaction AS						
 SELECT payment_id, payment_amount,payment_date						
 FROM PaymentTransactions;		
 
---DISPALY WARD NUMBER OF COVID PATIENT								
-SELECT p.first_name AS "Patient",		
-a.ward_id AS "Room No.",		
-a.admit_date AS "Date and Time of admission"		
-FROM patient p		
-JOIN Patient_Ward a ON p.patient_id=a.patient_id		
-WHERE (covid_19= 'Yes');				
-						
-GRANT SELECT,INSERT,UPDATE,DELETE ON view_payment_transaction TO reception;				
 
+--RECEPTION USER
+CREATE USER reception IDENTIFIED BY Hospital654321;						
+
+--RECEPTION USER PERMISSIONS						
+GRANT CONNECT TO reception;	
+GRANT SELECT,INSERT,UPDATE,DELETE ON view_reception_patient TO reception;			
+GRANT SELECT,INSERT,UPDATE,DELETE ON view_payment_transaction TO reception;	    
 
 --DOCTOR VIEWS
 CREATE VIEW view_Doctor_patient AS
@@ -744,9 +736,7 @@ GRANT CONNECT TO doc123;
 GRANT SELECT ON view_Doctor TO doc123;
 GRANT SELECT ON view_Doctor_Patient TO doc123;
 
-
 --Analyst Views
-
 CREATE VIEW VIEW_ANALYST_DEPARTMENT
 AS SELECT department_name, hod_name, number_of_employees
 FROM department;
@@ -759,11 +749,9 @@ CREATE VIEW VIEW_ANALYST_HOSPITALWARD
 AS SELECT ward_id,ward_type, building_name, floor, staff_id
 FROM hospitalward;
 
-
 CREATE VIEW VIEW_ANALYST_LABORATORY
 AS SELECT test_id, patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id
 FROM laboratory;
-
 
 CREATE VIEW VIEW_ANALYST_MEDICINE
 AS SELECT medicine_id, medicine_name, quantity
@@ -785,41 +773,34 @@ CREATE VIEW VIEW_ANALYST_STAFF
 AS SELECT staff_id, first_name, last_name, age, address, department_id, shift_type
 FROM  staff;
 
-
 CREATE VIEW VIEW_ANALYST_INVENTORY
 AS SELECT item_id, item_name, item_brand, quantity, purchase_date, department_id
 FROM  Inventory;
-
-
 
 CREATE VIEW VIEW_ANALYST_STAFFWARD
 AS SELECT staff_ward_id,ward_id,staff_id
 FROM  staffward;
 
-
 CREATE VIEW VIEW_ANALYST_PATIENTWARD
-AS SELECT patient_ward_id,ward_id,patient_id,admit_date,discharge_date
-FROM  patientward;
+AS SELECT pat_ward_id,ward_id,patient_id,admit_date,discharge_date
+FROM  patient_ward;
 
-
-
-CREATE VIEW VIEW_ANALYST_MEDICINEWARD
-AS SELECT patient_med_id,patient_id,medicine_id
-FROM  medicineward;
+CREATE VIEW VIEW_ANALYST_PATIENTMEDICINE
+AS SELECT pat_med_id,patient_id,medicine_id
+FROM  patient_medicine;
 
 --Analyst User
-CREATE USER analyst IDENTIFIED BY Analyst654321;
-
-GRANT CONNECT TO analyst;
+CREATE USER analyst IDENTIFIED BY Aa10987654321;
 
 --Analyst User Permissions
+GRANT CONNECT TO analyst;
 GRANT SELECT ON VIEW_ANALYST_DEPARTMENT to analyst;
 GRANT SELECT ON VIEW_ANALYST_DOCTOR to analyst;
 GRANT SELECT ON VIEW_ANALYST_HOSPITALWARD to analyst;
 GRANT SELECT ON VIEW_ANALYST_INVENTORY to analyst;
 GRANT SELECT ON VIEW_ANALYST_STAFFWARD to analyst;
 GRANT SELECT ON VIEW_ANALYST_PATIENTWARD to analyst;
-GRANT SELECT ON VIEW_ANALYST_MEDICINEWARD to analyst;
+GRANT SELECT ON VIEW_ANALYST_PATIENTMEDICINE to analyst;
 GRANT SELECT ON VIEW_ANALYST_STAFF to analyst;
 GRANT SELECT ON VIEW_ANALYST_PAYMENTTRANSACTION to analyst;
 GRANT SELECT ON VIEW_ANALYST_PATIENTDOCTOR to analyst;
@@ -827,8 +808,14 @@ GRANT SELECT ON VIEW_ANALYST_MEDICINE to analyst;
 GRANT SELECT ON VIEW_ANALYST_PATIENT to analyst;
 GRANT SELECT ON VIEW_ANALYST_LABORATORY to analyst;
 
-
-
 --INDEX
 CREATE INDEX find_patient
 ON patient(first_name);
+
+--DISPALY WARD NUMBER OF COVID PATIENT								
+SELECT p.first_name AS "Patient",		
+a.ward_id AS "Room No.",		
+a.admit_date AS "Date and Time of admission"		
+FROM patient p		
+JOIN Patient_Ward a ON p.patient_id=a.patient_id		
+WHERE (covid_19= 'Yes');
