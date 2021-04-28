@@ -206,31 +206,31 @@ CREATE TABLE Staff_Ward (
   ALTER TABLE STAFF_WARD ADD CONSTRAINT FK_SW_SID FOREIGN KEY (staff_id) REFERENCES Staff(staff_id);
   ALTER TABLE STAFF_WARD ADD CONSTRAINT FK_SW_WARDID FOREIGN KEY (ward_id) REFERENCES HospitalWard(ward_id);
 
---Disabling Constraint
 
+--DISABLE CONSTRAINTS
 ALTER TABLE Staff_Ward
 DISABLE CONSTRAINT FK_SW_SID ;
 ALTER TABLE Staff_Ward
 DISABLE CONSTRAINT FK_SW_WARDID ;
 
 ALTER TABLE HospitalWard
-DISABLE CONSTRAINT FK_SW_STAFFID ;
+DISABLE CONSTRAINT FK_HW_STAFFID ;
 
 ALTER TABLE Patient_Ward
 DISABLE CONSTRAINT FK_PW_PID ;
 ALTER TABLE Patient_Ward
-DISABLE CONSTRAINT FK_SW_HW ;
+DISABLE CONSTRAINT FK_PW_HW ;
 
 ALTER TABLE Patient_Medicine
-DISABLE CONSTRAINT FK_SW_PID ;
+DISABLE CONSTRAINT FK_PM_PID ;
 ALTER TABLE Patient_Medicine
-DISABLE CONSTRAINT FK_SW_MID ;
+DISABLE CONSTRAINT FK_PM_MID ;
 
 ALTER TABLE Patient
 DISABLE CONSTRAINT FK_P_PAYID ;
 
 ALTER TABLE Inventory
-DISABLE CONSTRAINT FK_INV_PDEPTID ;
+DISABLE CONSTRAINT FK_INV_DEPTID ;
 
 ALTER TABLE Doctor
 DISABLE CONSTRAINT FK_DOC_DEPTID ;
@@ -315,49 +315,49 @@ INSERT INTO DOCTOR (first_name, last_name, address, specialization, date_of_birt
 
 --HospitalWard Table
 
-INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('GENERAL','NEW',1,10002);
-INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('GENERAL','NEW',1,10002);
-INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('GENERAL','NEW',1,10010);
-INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('GENERAL','OLD',2,10008);
-INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('PRIVATE','NEW',3,10009);
-INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('PRIVATE','NEW',3,10009);
-INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('PRIVATE','OLD',3,10009);
-INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('PRIVATE','OLD',2,10008);
-INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('EMERGENCY','NEW',1,10010);
-INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('EMERGENCY','NEW',1,10010);
-INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('EMERGENCY','OLD',1,10014);
-INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('EMERGENCY','OLD',1,10014);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('GENERAL','NEW',1,13002);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('GENERAL','NEW',1,13002);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('GENERAL','NEW',1,13010);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('GENERAL','OLD',2,13008);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('PRIVATE','NEW',3,13009);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('PRIVATE','NEW',3,13009);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('PRIVATE','OLD',3,13009);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('PRIVATE','OLD',2,13008);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('EMERGENCY','NEW',1,13010);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('EMERGENCY','NEW',1,13010);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('EMERGENCY','OLD',1,13014);
+INSERT INTO HospitalWard (ward_type, building_name, floor, staff_id)VALUES ('EMERGENCY','OLD',1,13014);
 
 
 
 
 --Laboratory Project
 
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16003,'25-Jan-21','27-Jan-21','Covid RT-PCR','Abnormal',15001);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16015,'27-Jan-21','27-Jan-21','Hemogram Blood Test','Normal',15002);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16007,'26-Jan-21','26-Jan-21','Haemoglobin','Normal',15003);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16010,'18-Jan-21','18-Jan-21','Creatin Test','Normal',15002);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16001,'26-Jan-21','26-Jan-21','Stool Test','Abnormal',15004);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16013,'30-Jan-21','30-Jan-21','X-ray','Normal',15008);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16005,'02-Jan-21','02-Jan-21','Lipid Profile','Abnormal',15009);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16006,'02-Feb-21','02-Feb-21','Urionogram','Abnormal',15006);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16004,'05-Feb-21','05-Feb-21','Cardiac Risk Markers','Normal',15010);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16011,'06-Feb-21','06-Feb-21','Haemoglobin','Abnormal',15011);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16007,'07-Feb-21','07-Feb-21','Covid RT-PCR','Abnormal',15001);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16012,'10-Mar-21','10-Mar-21','Lipid Profile','Normal',15012);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16008,'12-Feb-21','12-Feb-21','Covid RT-PCR','Abnormal',15001);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16002,'13-Feb-21','13-Feb-21','Covid RT-PCR','Normal',15001);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16014,'15-Feb-21','15-Feb-21','Cardiac Risk Markers','Normal',15010);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16013,'16-Feb-21','16-Feb-21','Urionogram','Abnormal',15014);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16001,'18-Feb-21','18-Feb-21','Haemoglobin','Abnormal',15013);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16009,'18-Feb-21','18-Feb-21','Covid RT-PCR','Normal',15001);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16008,'19-Feb-21','19-Feb-21','Cardiac Risk Markers','Normal',15008);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16011,'20-Feb-21','20-Feb-21','Hemogram Blood Test','Abnormal',15012);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16015,'22-Feb-21','22-Feb-21','Covid RT-PCR','Normal',15001);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16006,'24-Feb-21','24-Feb-21','Covid RT-PCR','Normal',15001);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16010,'27-Feb-21','27-Feb-21','Lipid Profile','Abnormal',15004);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16013,'28-Feb-21','28-Feb-21','Hemogram Blood Test','Normal',15008);
-INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16014,'01-Mar-21','01-Mar-21','Cardiac Risk Markers','Abnormal',15009);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16003,'25-Jan-21','27-Jan-21','Covid RT-PCR','Abnormal',13001);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16015,'27-Jan-21','27-Jan-21','Hemogram Blood Test','Normal',13002);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16007,'26-Jan-21','26-Jan-21','Haemoglobin','Normal',13003);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16010,'18-Jan-21','18-Jan-21','Creatin Test','Normal',13002);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16001,'26-Jan-21','26-Jan-21','Stool Test','Abnormal',13004);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16013,'30-Jan-21','30-Jan-21','X-ray','Normal',13008);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16005,'02-Jan-21','02-Jan-21','Lipid Profile','Abnormal',13009);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16006,'02-Feb-21','02-Feb-21','Urionogram','Abnormal',13006);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16004,'05-Feb-21','05-Feb-21','Cardiac Risk Markers','Normal',13010);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16011,'06-Feb-21','06-Feb-21','Haemoglobin','Abnormal',13011);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16007,'07-Feb-21','07-Feb-21','Covid RT-PCR','Abnormal',13001);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16012,'10-Mar-21','10-Mar-21','Lipid Profile','Normal',13012);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16008,'12-Feb-21','12-Feb-21','Covid RT-PCR','Abnormal',13001);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16002,'13-Feb-21','13-Feb-21','Covid RT-PCR','Normal',13001);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16014,'15-Feb-21','15-Feb-21','Cardiac Risk Markers','Normal',13010);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16013,'16-Feb-21','16-Feb-21','Urionogram','Abnormal',13014);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16001,'18-Feb-21','18-Feb-21','Haemoglobin','Abnormal',13013);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16009,'18-Feb-21','18-Feb-21','Covid RT-PCR','Normal',13001);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16008,'19-Feb-21','19-Feb-21','Cardiac Risk Markers','Normal',13008);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16011,'20-Feb-21','20-Feb-21','Hemogram Blood Test','Abnormal',13012);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16015,'22-Feb-21','22-Feb-21','Covid RT-PCR','Normal',13001);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16006,'24-Feb-21','24-Feb-21','Covid RT-PCR','Normal',13001);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16010,'27-Feb-21','27-Feb-21','Lipid Profile','Abnormal',13004);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16013,'28-Feb-21','28-Feb-21','Hemogram Blood Test','Normal',13008);
+INSERT INTO LABORATORY (patient_id,date_of_test, date_of_result,type_of_test,test_result,staff_id) VALUES(16014,'01-Mar-21','01-Mar-21','Cardiac Risk Markers','Abnormal',13009);
 
 --Medicine Table
 
@@ -470,7 +470,7 @@ INSERT INTO PATIENT_MEDICINE (patient_id, medicine_id) VALUES (16002,20017);
 INSERT INTO PATIENT_MEDICINE (patient_id, medicine_id) VALUES (16003,20018);
 INSERT INTO PATIENT_MEDICINE (patient_id, medicine_id) VALUES (16004,20019);
 INSERT INTO PATIENT_MEDICINE (patient_id, medicine_id) VALUES (16005,20020);
-INSERT INTO PATIENT_MEDICINE (patient_id, medicine_id) VALUES (16006,20021);
+INSERT INTO PATIENT_MEDICINE (patient_id, medicine_id) VALUES (16006,20005);
 INSERT INTO PATIENT_MEDICINE (patient_id, medicine_id) VALUES (16007,20006);
 INSERT INTO PATIENT_MEDICINE (patient_id, medicine_id) VALUES (16008,20007);
 INSERT INTO PATIENT_MEDICINE (patient_id, medicine_id) VALUES (16009,20008);
@@ -528,131 +528,175 @@ INSERT INTO PATIENT_MEDICINE (patient_id, medicine_id) VALUES (16015,20020);
 
 --Staff_Ward Table
 
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19001,10002);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19002,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19003,10010);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19004,10010);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19005,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19006,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19007,10010);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19008,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19009,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19010,10010);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19011,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19012,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19001,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19002,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19003,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19004,10010);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19005,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19006,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19007,10010);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19008,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19009,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19010,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19011,10002);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19012,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19001,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19002,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19003,10002);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19004,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19005,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19006,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19007,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19008,10010);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19009,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19010,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19011,10010);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19012,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19001,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19002,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19003,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19004,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19005,10002);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19006,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19007,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19008,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19009,10010);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19010,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19011,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19012,10010);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19001,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19002,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19003,10002);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19004,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19005,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19006,10010);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19007,10014);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19008,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19009,10010);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19010,10008);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19011,10002);
-INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (19012,10008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21001,13002);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21002,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21003,13010);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21004,13010);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21005,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21006,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21007,13010);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21008,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21009,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21010,13010);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21011,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21012,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21001,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21002,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21003,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21004,13010);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21005,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21006,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21007,13010);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21008,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21009,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21010,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21011,13002);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21012,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21001,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21002,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21003,13002);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21004,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21005,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21006,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21007,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21008,13010);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21009,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21010,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21011,13010);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21012,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21001,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21002,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21003,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21004,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21005,13002);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21006,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21007,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21008,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21009,13010);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21010,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21011,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21012,13010);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21001,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21002,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21003,13002);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21004,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21005,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21006,13010);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21007,13014);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21008,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21009,13010);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21010,13008);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21011,13002);
+INSERT INTO Staff_Ward (ward_id, staff_id) VALUES (21012,13008);
 
 --Patient_Ward Table
 
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16001,19001,'23-Mar-20','26-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16002,19002,'24-Mar-20','27-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16003,19003,'25-Mar-20','27-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16004,19004,'26-Mar-20','02-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16005,19005,'27-Mar-20','30-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16006,19006,'28-Mar-20','31-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16007,19007,'29-Mar-20','01-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16008,19008,'30-Mar-20','31-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16009,19009,'31-Mar-20','02-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16010,19010,'01-Apr-20','03-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16011,19011,'02-Apr-20','05-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16012,19012,'03-Apr-20','07-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16013,19005,'04-Apr-20','06-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16014,19006,'29-Mar-20','31-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16001,19005,'31-Mar-20','08-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16002,19006,'01-Apr-20','04-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16003,19010,'25-Mar-20','26-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16004,19011,'26-Mar-20','30-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16005,19012,'11-Apr-20','14-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16006,19005,'12-Apr-20','15-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16007,19002,'13-Apr-20','16-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16008,19003,'29-Mar-20','31-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16009,19005,'30-Mar-20','01-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16010,19001,'25-Mar-20','30-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16012,19003,'25-Mar-20','27-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16013,19004,'26-Mar-20','27-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16014,19005,'25-Mar-20','31-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16001,19007,'25-Mar-20','06-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16002,19008,'26-Mar-20','30-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16003,19009,'24-Apr-20','30-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16004,19010,'29-Mar-20','07-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16005,19011,'30-Mar-20','02-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16007,19005,'01-Apr-20','04-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16008,19006,'02-Apr-20','05-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16009,19002,'30-Apr-20','01-May-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16010,19003,'01-May-20','06-May-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16012,19005,'29-Mar-20','30-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16013,19006,'30-Mar-20','19-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16014,19010,'31-Mar-20','03-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16001,19012,'02-Apr-20','03-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16002,19005,'25-Mar-20','27-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16003,19006,'26-Mar-20','30-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16004,19002,'31-Mar-20','12-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16005,19003,'01-Apr-20','10-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16008,19002,'31-Mar-20','05-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16009,19006,'01-Apr-20','06-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16010,19002,'02-Apr-20','03-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16012,19005,'18-May-20','19-May-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16013,19006,'19-May-20','20-May-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16014,19002,'20-May-20','20-May-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16015,19003,'25-Mar-20','28-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16001,19010,'26-Mar-20','09-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16002,19011,'25-Mar-20','03-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16003,19012,'26-Mar-20','29-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16004,19010,'25-Mar-20','24-Apr-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16005,19004,'26-Mar-20','28-Mar-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16007,19006,'28-May-20','31-May-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16010,19003,'31-May-20','03-Jun-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16012,19011,'02-Jun-20','04-Jun-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16013,19012,'03-Jun-20','09-Jun-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16014,19006,'04-Jun-20','04-Jun-20');
-INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16015,19010,'05-Jun-20','08-Jun-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16001,21001,'23-Mar-20','26-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16002,21002,'24-Mar-20','27-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16003,21003,'25-Mar-20','27-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16004,21004,'26-Mar-20','02-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16005,21005,'27-Mar-20','30-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16006,21006,'28-Mar-20','31-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16007,21007,'29-Mar-20','01-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16008,21008,'30-Mar-20','31-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16009,21009,'31-Mar-20','02-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16010,21010,'01-Apr-20','03-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16011,21011,'02-Apr-20','05-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16012,21012,'03-Apr-20','07-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16013,21005,'04-Apr-20','06-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16014,21006,'29-Mar-20','31-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16001,21005,'31-Mar-20','08-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16002,21006,'01-Apr-20','04-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16003,21010,'25-Mar-20','26-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16004,21011,'26-Mar-20','30-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16005,21012,'11-Apr-20','14-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16006,21005,'12-Apr-20','15-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16007,21002,'13-Apr-20','16-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16008,21003,'29-Mar-20','31-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16009,21005,'30-Mar-20','01-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16010,21001,'25-Mar-20','30-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16012,21003,'25-Mar-20','27-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16013,21004,'26-Mar-20','27-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16014,21005,'25-Mar-20','31-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16001,21007,'25-Mar-20','06-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16002,21008,'26-Mar-20','30-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16003,21009,'24-Apr-20','30-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16004,21010,'29-Mar-20','07-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16005,21011,'30-Mar-20','02-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16007,21005,'01-Apr-20','04-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16008,21006,'02-Apr-20','05-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16009,21002,'30-Apr-20','01-May-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16010,21003,'01-May-20','06-May-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16012,21005,'29-Mar-20','30-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16013,21006,'30-Mar-20','19-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16014,21010,'31-Mar-20','03-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16001,21012,'02-Apr-20','03-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16002,21005,'25-Mar-20','27-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16003,21006,'26-Mar-20','30-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16004,21002,'31-Mar-20','12-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16005,21003,'01-Apr-20','10-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16008,21002,'31-Mar-20','05-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16009,21006,'01-Apr-20','06-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16010,21002,'02-Apr-20','03-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16012,21005,'18-May-20','19-May-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16013,21006,'19-May-20','20-May-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16014,21002,'20-May-20','20-May-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16015,21003,'25-Mar-20','28-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16001,21010,'26-Mar-20','09-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16002,21011,'25-Mar-20','03-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16003,21012,'26-Mar-20','29-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16004,21010,'25-Mar-20','24-Apr-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16005,21004,'26-Mar-20','28-Mar-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16007,21006,'28-May-20','31-May-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16010,21003,'31-May-20','03-Jun-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16012,21011,'02-Jun-20','04-Jun-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16013,21012,'03-Jun-20','09-Jun-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16014,21006,'04-Jun-20','04-Jun-20');
+INSERT INTO Patient_Ward (patient_id, ward_id, admit_date, dischardge_date) VALUES (16015,21010,'05-Jun-20','08-Jun-20');
+
+
+--Enabling Constraints
+
+ALTER TABLE Staff_Ward
+ENABLE CONSTRAINT FK_SW_SID ;
+ALTER TABLE Staff_Ward
+ENABLE CONSTRAINT FK_SW_WARDID ;
+
+ALTER TABLE HospitalWard
+ENABLE CONSTRAINT FK_HW_STAFFID ;
+
+ALTER TABLE Patient_Ward
+ENABLE CONSTRAINT FK_PW_PID ;
+ALTER TABLE Patient_Ward
+ENABLE CONSTRAINT FK_PW_HW ;
+
+ALTER TABLE Patient_Medicine
+ENABLE CONSTRAINT FK_PM_PID ;
+ALTER TABLE Patient_Medicine
+ENABLE CONSTRAINT FK_PM_MID ;
+
+ALTER TABLE Patient
+ENABLE CONSTRAINT FK_P_PAYID ;
+
+ALTER TABLE Inventory
+ENABLE CONSTRAINT FK_INV_DEPTID ;
+
+ALTER TABLE Doctor
+ENABLE CONSTRAINT FK_DOC_DEPTID ;
+
+ALTER TABLE STAFF
+ENABLE CONSTRAINT FK_STAFF_DID ;
+
+ALTER TABLE LABORATORY
+ENABLE CONSTRAINT FK_LAB_PID ;
+ALTER TABLE LABORATORY
+ENABLE CONSTRAINT FK_LAB_STAFFID ;
+
+ALTER TABLE PATIENT_DOCTOR
+ENABLE CONSTRAINT FK_PD_PID ;
+ALTER TABLE PATIENT_DOCTOR
+ENABLE CONSTRAINT FK_PD_DID ;
+
 
 
 --Views 
