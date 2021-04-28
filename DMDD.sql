@@ -819,3 +819,17 @@ a.admit_date AS "Date and Time of admission"
 FROM patient p		
 JOIN Patient_Ward a ON p.patient_id=a.patient_id		
 WHERE (covid_19= 'Yes');
+
+--Procedure to get appointment and doctor details with patient_id as input												
+CREATE OR REPLACE PROCEDURE get_appoin_details(patid_in IN INT, appoindate_out OUT DATE, docid_out OUT INT, docfname_out OUT VARCHAR, doclname_out OUT VARCHAR, docspec_out OUT VARCHAR)												
+IS												
+BEGIN												
+DBMS_OUTPUT.PUT_LINE('THANK YOU FOR CHECKING. APPOINTMENT AND DOCTOR DETAILS ARE BELOW:');												
+												
+SELECT a.appoin_date, a.doctor_id, b.first_name, b.last_name, b.specialization INTO  appoindate_out, docid_out, docfname_out, doclname_out, docspec_out												
+FROM patient_doctor a JOIN doctor b												
+ON a.doctor_id = b.doctor_id												
+WHERE a.patient_id = patid_in;												
+												
+END get_appoin_details;												
+/												
