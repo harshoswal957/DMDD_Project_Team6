@@ -937,6 +937,36 @@ END;
 /					
 
 
+--Functions
+
+
+-- FUNCTION TO GET NUMBER OF EMPLOYEES IN DAY/NIGHT SHIFT
+/
+CREATE OR REPLACE FUNCTION get_total_emp(
+in_shift VARCHAR
+)
+RETURN NUMBER
+IS
+l_total_emp NUMBER;
+BEGIN
+
+SELECT COUNT(shift_type)
+INTO l_total_emp
+FROM staff
+WHERE shift_type = in_shift;
+
+RETURN l_total_emp;
+END;
+/
+------------------------------------------------------------------------------------------
+SELECT
+get_total_emp('&DAYorNIGHT')
+FROM
+dual;
+
+
+
+
 --SELECT STATEMENTS FOR TABLES
 SELECT * FROM PATIENT_WARD;
 SELECT * FROM HOSPITALWARD;
