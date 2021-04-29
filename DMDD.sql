@@ -4636,7 +4636,7 @@ FROM
          patient p
     JOIN patient_ward a ON p.patient_id = a.patient_id
 WHERE
-    ( covid_19 = 'Yes' );
+    ( covid_19 = 'YES' );
 
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
@@ -4763,11 +4763,11 @@ FROM
 ------------------------------------------------------------------------------------------
 
 -- FUNCTION TO GET NUMBER OF TRANSACTIONS
-CREATE OR REPLACE FUNCTION totalnumberoftransactions RETURN NUMBER IS
+CREATE OR REPLACE FUNCTION totalrevenue RETURN NUMBER IS
     total NUMBER := 0;
 BEGIN
     SELECT
-        COUNT(*)
+        SUM(payment_amount)
     INTO total
     FROM
         paymenttransactions;
@@ -4829,7 +4829,6 @@ WHERE
 
 --Staff age shift trigger
 
-DROP TRIGGER staff_age_shift;
 
 SET SERVEROUTPUT ON;
 
