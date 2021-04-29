@@ -1055,4 +1055,27 @@ SELECT * FROM PATIENT_MEDICINE;
 SELECT * FROM MEDICINE;
 SELECT * FROM PATIENT_WARD;
 SELECT * FROM HOSPITALWARD;
-SELECT * FROM STAFF_WARD;					
+SELECT * FROM STAFF_WARD;	
+
+
+--Queries
+--To display the names of the inventory items whose qty is less than 5
+
+SELECT item_id, item_name FROM inventory WHERE 
+        department_id=4 AND quantity <5;
+
+--To display the names of the patients who never got tested
+SELECT patient_id, last_name, first_name
+FROM    patient p1
+WHERE NOT EXISTS (SELECT lab.patient_id 
+                                      FROM laboratory lab 
+                                      WHERE lab.patient_id = p1.patient_id 
+                                      );
+
+-- To display the total revenue for all the payment transactions 
+SELECT sum(payment_amount) as Total_revenue from paymenttransactions;
+
+--To display the monthly revenue or between any dates
+
+SELECT sum(payment_amount) as Total_revenue from paymenttransactions where payment_date between '01-JAN-21' and '13-jan-21';																				  
+				
