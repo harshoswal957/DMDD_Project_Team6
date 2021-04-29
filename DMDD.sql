@@ -955,7 +955,7 @@ END;
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
 -- FUNCTION TO GET NUMBER OF EMPLOYEES IN DAY/NIGHT SHIFT
-/
+
 CREATE OR REPLACE FUNCTION get_total_emp(
 in_shift VARCHAR
 )
@@ -1036,6 +1036,29 @@ END;
 SELECT FIRST_NAME, FindPatientId(first_name) AS pat_id
 FROM patient
 WHERE first_name = 'AMY';
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
+
+--Staff age shift trigger
+
+DROP TRIGGER staff_age_shift;
+
+SET SERVEROUTPUT on;
+
+CREATE OR REPLACE TRIGGER staff_age_shift
+before INSERT ON STAFF
+FOR EACH ROW 
+WHEN (new.age>50  and new.shift_type = 'NIGHT') 
+BEGIN 
+   dbms_output.put_line('SENIOR CITIZEN, PLEASE ASSIGN DAY SHIFTS ONLY:'); 
+END; 
+/ 
+
+INSERT INTO STAFF (first_name, last_name, age, address, department_id, shift_type) VALUES('HARSH','OSWAL',65,'155 MG ROAD',10001,'NIGHT');
+
+select * from staff;
 
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
