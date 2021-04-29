@@ -4358,7 +4358,7 @@ VIEW view_lab_admin AS
     FROM
         patient;
 
-CREATE USER lab_admin IDENTIFIED BY labadmin654321;
+CREATE USER lab_admin IDENTIFIED BY Labadmin654321;
 
 GRANT connect TO lab_admin;
 
@@ -4415,7 +4415,7 @@ CREATE VIEW view_payment_transaction AS
         paymenttransactions;		
 
 --RECEPTION USER
-CREATE USER reception IDENTIFIED BY hospital654321;						
+CREATE USER reception IDENTIFIED BY Hospital654321;						
 
 --RECEPTION USER PERMISSIONS						
 GRANT connect TO reception;
@@ -4447,7 +4447,7 @@ CREATE VIEW view_doctor AS
         patient;
 
 --DOCTOR USER
-CREATE USER doc123 IDENTIFIED BY doctor654321;
+CREATE USER doc123 IDENTIFIED BY Doctor654321;
 
 --DOCTOR USER PERMISSIONS
 GRANT connect TO doc123;
@@ -4590,7 +4590,7 @@ CREATE VIEW view_analyst_patientmedicine AS
         patient_medicine;
 
 --Analyst User
-CREATE USER analyst IDENTIFIED BY aa10987654321;
+CREATE USER analyst IDENTIFIED BY Aa10987654321;
 
 --Analyst User Permissions
 GRANT connect TO analyst;
