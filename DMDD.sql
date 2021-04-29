@@ -1063,6 +1063,57 @@ select * from staff;
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
 
+--Inventory Quantity too low trigger
+
+DROP TRIGGER inventory_quantity_low;
+
+SET SERVEROUTPUT on;
+
+CREATE OR REPLACE TRIGGER inventory_quantity_low
+AFTER UPDATE ON INVENTORY 
+FOR EACH ROW 
+WHEN (new.quantity BETWEEN 1 AND 5) 
+BEGIN 
+   dbms_output.put_line('Quantity very low:'); 
+END; 
+/ 
+
+UPDATE Inventory
+SET Quantity=2 Where ITEM_ID=15002;
+
+select*from inventory;
+
+
+
+
+
+
+
+--Medicine Quantity too low trigger
+
+DROP TRIGGER medicine_quantity_low;
+
+SET SERVEROUTPUT on;
+
+CREATE OR REPLACE TRIGGER medicine_quantity_low
+AFTER UPDATE ON MEDICINE 
+FOR EACH ROW 
+WHEN (new.quantity < 5) 
+BEGIN 
+   dbms_output.put_line('Quantity very low:'); 
+END; 
+/ 
+
+
+
+UPDATE Medicine
+SET Quantity=2 Where medicine_id=20002;
+
+select*from medicine;
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
 --SELECT STATEMENTS FOR TABLES
 SELECT * FROM PATIENT_WARD;
 SELECT * FROM HOSPITALWARD;
@@ -1080,6 +1131,8 @@ SELECT * FROM PATIENT_WARD;
 SELECT * FROM HOSPITALWARD;
 SELECT * FROM STAFF_WARD;	
 
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
 --Queries
 --To display the names of the inventory items whose qty is less than 5
