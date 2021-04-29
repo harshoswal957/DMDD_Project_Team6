@@ -733,7 +733,7 @@ SELECT patient_id, first_name, last_name,address,date_of_birth,age,covid_19,bloo
 FROM Patient;
 CREATE USER lab_admin IDENTIFIED BY Labadmin654321;
 
-GRANT CONNECT TO lab_admin
+GRANT CONNECT TO lab_admin;
 
 GRANT SELECT ON view_lab_admin TO lab_admin;
 
@@ -746,14 +746,14 @@ FROM Laboratory;
 
 
 
-GRANT SELECT,INSERT,UPDATE,DELETE ON view_lab_admin_laboratory TO lab_admin123;
+GRANT SELECT,INSERT,UPDATE,DELETE ON view_lab_admin_laboratory TO lab_admin;
 
 --LAB ADMIN STAFF VIEW
 CREATE VIEW view_lab_admin_staff AS
 SELECT staff_id
 FROM staff;
 
-GRANT SELECT ON view_lab_admin_staff TO lab_admin123;
+GRANT SELECT ON view_lab_admin_staff TO lab_admin;
 
 
 
@@ -837,7 +837,7 @@ FROM  Inventory;
 
 CREATE VIEW VIEW_ANALYST_STAFFWARD
 AS SELECT staff_ward_id,ward_id,staff_id
-FROM  staffward;
+FROM  staff_ward;
 
 CREATE VIEW VIEW_ANALYST_PATIENTWARD
 AS SELECT pat_ward_id,ward_id,patient_id,admit_date,discharge_date
