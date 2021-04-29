@@ -878,6 +878,12 @@ FROM patient p
 JOIN Patient_Ward a ON p.patient_id=a.patient_id		
 WHERE (covid_19= 'Yes');
 
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
+--PROCEDURES
+
+
 --Procedure to get appointment and doctor details with patient_id as input												
 CREATE OR REPLACE PROCEDURE get_appoin_details(patid_in IN INT, appoindate_out OUT DATE, docid_out OUT INT, docfname_out OUT VARCHAR, doclname_out OUT VARCHAR, docspec_out OUT VARCHAR)												
 IS												
@@ -891,7 +897,7 @@ WHERE a.patient_id = patid_in;
 												
 END get_appoin_details;												
 /												
-
+------------------------------------------------------------------------------------------
 SET SERVEROUTPUT ON;						
 --Anonymous block						
 DECLARE						
@@ -910,9 +916,15 @@ dbms_output.put_line('doctor specialization = '||docspec_var);
 END;						
 /	
 
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
+
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 --Procedure to get department details with staff_id as input						
-						
+
 CREATE OR REPLACE PROCEDURE get_staff_details( staffid_in IN INT ,department_name_out OUT VARCHAR)						
 IS						
 BEGIN						
@@ -925,7 +937,7 @@ WHERE b.staff_id = staffid_in;
 						
 END get_staff_details;						
 /												
-						
+------------------------------------------------------------------------------------------						
 SET SERVEROUTPUT ON;						
 --Anonymous block						
 DECLARE												
@@ -935,11 +947,13 @@ get_staff_details(&staffid,  department_name);
 dbms_output.put_line('Department name = '||department_name);												
 END;						
 /					
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
 
 --Functions
-
-
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 -- FUNCTION TO GET NUMBER OF EMPLOYEES IN DAY/NIGHT SHIFT
 /
 CREATE OR REPLACE FUNCTION get_total_emp(
@@ -965,7 +979,66 @@ FROM
 dual;
 
 
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
+-- FUNCTION TO GET NUMBER OF TRANSACTIONS
+CREATE OR REPLACE FUNCTION totalnumberoftransactions
+RETURN number IS
+total  number := 0;
+BEGIN
+SELECT count(*) into total
+FROM paymenttransactions;
+RETURN total;
+END;
+/
+------------------------------------------------------------------------------------------
+DECLARE
+c number(9);
+BEGIN
+c := totalrevenue();
+dbms_output.put_line('Total revenue generated: ' || c);
+END;
+/
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
+--FUNCTION TO GET THE PATIENT ID WITH FIRST NAME
+CREATE OR REPLACE Function FindPatientId
+   ( name_in IN varchar2 )
+   RETURN number
+IS
+   cnumber number;
+
+   cursor c1 is
+   SELECT patient_id
+     FROM patient
+     WHERE first_name = name_in;
+
+BEGIN
+   open c1;
+   fetch c1 into cnumber;
+
+   if c1%notfound then
+      cnumber := 00000;
+   end if;
+
+   close c1;
+
+RETURN cnumber;
+
+EXCEPTION
+WHEN OTHERS THEN
+   raise_application_error(-20001,'An error was encountered - '||SQLCODE||' -ERROR- '||SQLERRM);
+END;
+------------------------------------------------------------------------------------------
+SELECT FIRST_NAME, FindPatientId(first_name) AS pat_id
+FROM patient
+WHERE first_name = 'AMY';
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
 --SELECT STATEMENTS FOR TABLES
 SELECT * FROM PATIENT_WARD;
