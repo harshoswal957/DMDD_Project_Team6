@@ -1100,5 +1100,17 @@ SELECT sum(payment_amount) as Total_revenue from paymenttransactions;
 
 --To display the monthly revenue or between any dates
 
-SELECT sum(payment_amount) as Total_revenue from paymenttransactions where payment_date between '01-JAN-21' and '13-jan-21';																				  
+SELECT sum(payment_amount) as Total_revenue from paymenttransactions where payment_date between '01-JAN-21' and '13-jan-21';												
+--Queries
+--DISPLAY WARD ALLOTMENT OF A PATIENT					
+SELECT p.first_name AS "Patient", a.ward_id AS "Room No.", a.admit_date AS "Date and Time of admission" FROM patient p JOIN Patient_Ward a ON p.patient_id=a.patient_id;
+
+--DISPALY WARD NUMBER OF COVID PATIENT				
+				
+SELECT p.first_name AS "Patient",				
+a.ward_id AS "Room No.",				
+a.admit_date AS "Date and Time of admission"				
+FROM patient p				
+JOIN Patient_Ward a ON p.patient_id=a.patient_id				
+WHERE (covid_19= 'Yes');									  
 				
