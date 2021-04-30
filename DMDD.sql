@@ -4259,9 +4259,9 @@ INSERT INTO patient_ward (
 );
 
 --CONSTRAINTS
-ALTER TABLE patient MODIFY (
-    payment_id NOT NULL
-);
+--ALTER TABLE patient MODIFY (
+--    payment_id NOT NULL
+--);
 
 ALTER TABLE patient
     ADD CONSTRAINT age_chk_pat CHECK ( age BETWEEN 0 AND 99 );
@@ -4760,6 +4760,12 @@ FROM
     dual;
 
 ------------------------------------------------------------------------------------------
+SELECT * FROM STAFF;
+UPDATE STAFF SET shift_type='NIGHT' WHERE STAFF_ID = 13008;
+
+
+
+
 ------------------------------------------------------------------------------------------
 
 -- FUNCTION TO GET NUMBER OF TRANSACTIONS
@@ -4785,6 +4791,11 @@ END;
 /
 
 ------------------------------------------------------------------------------------------
+SELECT * FROM paymenttransactions;
+UPDATE paymenttransactions SET payment_amount = 9999 WHERE payment_id = 17015;
+
+
+
 ------------------------------------------------------------------------------------------
 
 --FUNCTION TO GET THE PATIENT ID WITH FIRST NAME
@@ -4868,7 +4879,6 @@ FROM
 
 --Inventory Quantity too low trigger
 
-DROP TRIGGER inventory_quantity_low;
 
 SET SERVEROUTPUT ON;
 
@@ -4877,7 +4887,7 @@ CREATE OR REPLACE TRIGGER inventory_quantity_low AFTER
     FOR EACH ROW
     WHEN ( new.quantity BETWEEN 1 AND 5 )
 BEGIN
-    dbms_output.put_line('Quantity very low:');
+    dbms_output.put_line('Quantity very low, Please restock soon !!');
 END;
 /
 
@@ -4898,7 +4908,6 @@ FROM
 
 --Medicine Quantity too low trigger
 
-DROP TRIGGER medicine_quantity_low;
 
 SET SERVEROUTPUT ON;
 
@@ -4907,7 +4916,7 @@ CREATE OR REPLACE TRIGGER medicine_quantity_low AFTER
     FOR EACH ROW
     WHEN ( new.quantity < 5 )
 BEGIN
-    dbms_output.put_line('Quantity very low:');
+    dbms_output.put_line('Medicine quantity very low');
 END;
 /
 
@@ -4926,15 +4935,6 @@ FROM
 ------------------------------------------------------------------------------------------
 
 --SELECT STATEMENTS FOR TABLES
-SELECT
-    *
-FROM
-    patient_ward;
-
-SELECT
-    *
-FROM
-    hospitalward;
 
 SELECT
     *
@@ -5006,17 +5006,41 @@ FROM
 
 --Queries
 --To display the names of the inventory items whose qty is less than 5
-
 SELECT
     item_id,
     item_name
 FROM
     inventory
 WHERE
-        department_id = 4
-    AND quantity < 5;
+        department_id = 10004
+    AND quantity < 10;
+
 
 --To display the names of the patients who never got tested
+
+INSERT INTO patient (
+    first_name,
+    last_name,
+    address,
+    insurance,
+    date_of_birth,
+    age,
+    covid_19,
+    blood_group,
+    payment_id
+) VALUES (
+    'SAM',
+    'CURRAN',
+    '98 SOMERVILLE',
+    'YES',
+    '29-Aug-2002',
+    18,
+    'YES',
+    'B+',
+    ''
+);
+
+
 SELECT
     patient_id,
     last_name,
@@ -5032,6 +5056,8 @@ WHERE
         WHERE
             lab.patient_id = p1.patient_id
     );
+
+
 
 -- To display the total revenue for all the payment transactions 
 SELECT
@@ -5057,14 +5083,17 @@ FROM
          patient p
     JOIN patient_ward a ON p.patient_id = a.patient_id;
 
---DISPALY WARD NUMBER OF COVID PATIENT				
+
+--DISPLAY WARD NUMBER OF COVID PATIENT FOR CONTACT TRACING BETWEEN TWO DATES
 				
-SELECT
-    p.first_name    AS "Patient",
-    a.ward_id       AS "Room No.",
-    a.admit_date    AS "Date and Time of admission"
-FROM
-         patient p
-    JOIN patient_ward a ON p.patient_id = a.patient_id
-WHERE
-    ( covid_19 = 'Yes' );
+SELECT*FROM PATIENT;
+    CREATE or replace VIEW covid_ward AS 
+    SELECT p.patient_id,p.first_name,p.last_name,w.ward_id,h.floor,h.building_name,w.admit_date
+    FROM Patient p,Patient_ward w,HospitalWard h
+    WHERE ( w.patient_id=p.patient_id )
+    AND ( w.ward_id=h.ward_id )
+    AND covid_19 = 'YES'
+    and admit_date between '27-03-20' and '27-04-20'
+    ORDER BY first_name, admit_date DESC;
+    
+    SELECT * FROM covid_ward;
