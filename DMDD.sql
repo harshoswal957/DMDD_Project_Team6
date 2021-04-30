@@ -5097,3 +5097,11 @@ SELECT*FROM PATIENT;
     ORDER BY first_name, admit_date DESC;
     
     SELECT * FROM covid_ward;
+	
+	
+--BRAND WISE INVENTORY ITEM VISUALIZATION
+SELECT item_brand,
+        item_name,
+        quantity
+FROM view_analyst_inventory
+GROUP BY item_brand,item_name,quantity;
