@@ -4768,7 +4768,7 @@ UPDATE STAFF SET shift_type='NIGHT' WHERE STAFF_ID = 13008;
 
 ------------------------------------------------------------------------------------------
 
--- FUNCTION TO GET NUMBER OF TRANSACTIONS
+-- FUNCTION TO GET TOTAL REVENUE
 CREATE OR REPLACE FUNCTION totalrevenue RETURN NUMBER IS
     total NUMBER := 0;
 BEGIN
@@ -4781,6 +4781,7 @@ BEGIN
     RETURN total;
 END;
 /
+
 ------------------------------------------------------------------------------------------
 DECLARE
     c NUMBER(9);
