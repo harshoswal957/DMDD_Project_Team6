@@ -1,8 +1,3 @@
----------------------------------------------DMDD PROJECT 6 HOSPITAL MANAGEMENT-----------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
-
-
 -- CREATE SEQUENCES FOR PKs:
 
 CREATE SEQUENCE pk10_seq START WITH 10001 MAXVALUE 10999;
@@ -31,8 +26,6 @@ CREATE SEQUENCE pk21_seq START WITH 21001 MAXVALUE 21999;
 
 CREATE SEQUENCE pk22_seq START WITH 22001 MAXVALUE 22999;
 
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
 
 --CREATE TABLES:
 CREATE TABLE department (
@@ -143,9 +136,6 @@ CREATE TABLE staff_ward (
     staff_id       INT
 );
 
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
-
 --Creating foreign key Constraint
   ALTER TABLE patient_doctor
     ADD CONSTRAINT fk_pd_pid FOREIGN KEY ( patient_id )
@@ -211,9 +201,6 @@ ALTER TABLE staff_ward
     ADD CONSTRAINT fk_sw_wardid FOREIGN KEY ( ward_id )
         REFERENCES hospitalward ( ward_id );
 
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
-
 --DISABLE CONSTRAINTS
 ALTER TABLE staff_ward DISABLE CONSTRAINT fk_sw_sid;
 
@@ -244,9 +231,6 @@ ALTER TABLE laboratory DISABLE CONSTRAINT fk_lab_staffid;
 ALTER TABLE patient_doctor DISABLE CONSTRAINT fk_pd_pid;
 
 ALTER TABLE patient_doctor DISABLE CONSTRAINT fk_pd_did;
-
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
 
 --Data Insertion 
 
@@ -582,8 +566,6 @@ INSERT INTO patient (
     17015
 );
 
-------------------------------------------------------------------------------------------------------------------------------
-
 --PaymentTransactions TABLE
 
 INSERT INTO paymenttransactions (
@@ -736,8 +718,6 @@ INSERT INTO paymenttransactions (
     16015
 );
 
-------------------------------------------------------------------------------------------------------------------------------
-
 --Department table
 
 INSERT INTO department (
@@ -809,8 +789,6 @@ INSERT INTO department (
     'CHRIS EVANS',
     5
 );
-
-------------------------------------------------------------------------------------------------------------------------------
 
 --Doctor TABLE
 
@@ -958,8 +936,6 @@ INSERT INTO doctor (
     10006
 );
 
-------------------------------------------------------------------------------------------------------------------------------
-
 --HospitalWard Table
 
 INSERT INTO hospitalward (
@@ -1106,7 +1082,7 @@ INSERT INTO hospitalward (
     13014
 );
 
-------------------------------------------------------------------------------------------------------------------------------
+
 
 --Laboratory Project
 
@@ -1510,8 +1486,6 @@ INSERT INTO laboratory (
     13009
 );
 
-------------------------------------------------------------------------------------------------------------------------------
-
 --Medicine Table
 
 INSERT INTO medicine (
@@ -1673,8 +1647,6 @@ INSERT INTO medicine (
     'Keflex',
     32000
 );
-
-------------------------------------------------------------------------------------------------------------------------------
 
 --Inventory Table
 
@@ -2014,8 +1986,6 @@ INSERT INTO inventory (
     10003
 );
 
-------------------------------------------------------------------------------------------------------------------------------
-
 --Staff Table
 
 INSERT INTO staff (
@@ -2306,8 +2276,6 @@ INSERT INTO staff (
     'NIGHT'
 );
 
-------------------------------------------------------------------------------------------------------------------------------
-
 --Patient_Doctor Table
 
 INSERT INTO patient_doctor (
@@ -2459,8 +2427,6 @@ INSERT INTO patient_doctor (
     14001,
     '23-May-21'
 );
-
-------------------------------------------------------------------------------------------------------------------------------
 
 --PATIENT_MEDICINE Table
 
@@ -3064,8 +3030,6 @@ INSERT INTO patient_medicine (
     20020
 );
 
-------------------------------------------------------------------------------------------------------------------------------
-
 --Staff_Ward Table
 
 INSERT INTO staff_ward (
@@ -3547,8 +3511,6 @@ INSERT INTO staff_ward (
     21012,
     13008
 );
-
-------------------------------------------------------------------------------------------------------------------------------
 
 --Patient_Ward Table
 
@@ -4296,10 +4258,10 @@ INSERT INTO patient_ward (
     '08-Jun-20'
 );
 
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
-
 --CONSTRAINTS
+--ALTER TABLE patient MODIFY (
+--    payment_id NOT NULL
+--);
 
 ALTER TABLE patient
     ADD CONSTRAINT age_chk_pat CHECK ( age BETWEEN 0 AND 99 );
@@ -4342,8 +4304,6 @@ ALTER TABLE paymenttransactions ADD CONSTRAINT amnt_chk_pymt CHECK ( payment_amo
 ALTER TABLE laboratory
     ADD CONSTRAINT tstrl_chk_lab CHECK ( test_result IN ( 'Normal', 'Abnormal' ) );
 
-------------------------------------------------------------------------------------------------------------------------------
-
 --Enabling Foreign Key Constraints
 
 ALTER TABLE staff_ward ENABLE CONSTRAINT fk_sw_sid;
@@ -4379,8 +4339,8 @@ ALTER TABLE patient_doctor ENABLE CONSTRAINT fk_pd_did;
 --RENAME COLUMN NAME
 ALTER TABLE patient_ward RENAME COLUMN dischardge_date TO discharge_date;
 
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
+
+
 --Views 
 
 --LAB ADMIN VIEW
@@ -4398,18 +4358,11 @@ VIEW view_lab_admin AS
     FROM
         patient;
 
-------------------------------------------------------------------------------------------------------------------------------
-
 CREATE USER lab_admin IDENTIFIED BY Labadmin654321;
-
-------------------------------------------------------------------------------------------------------------------------------
 
 GRANT connect TO lab_admin;
 
 GRANT SELECT ON view_lab_admin TO lab_admin;
-
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
 
 --LAB ADMIN LABORATORY VIEW
 CREATE VIEW view_lab_admin_laboratory AS
@@ -4424,12 +4377,7 @@ CREATE VIEW view_lab_admin_laboratory AS
     FROM
         laboratory;
 
-------------------------------------------------------------------------------------------------------------------------------
-
 GRANT SELECT, INSERT, UPDATE, DELETE ON view_lab_admin_laboratory TO lab_admin;
-
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
 
 --LAB ADMIN STAFF VIEW
 CREATE VIEW view_lab_admin_staff AS
@@ -4437,13 +4385,10 @@ CREATE VIEW view_lab_admin_staff AS
         staff_id
     FROM
         staff;
-        
-------------------------------------------------------------------------------------------------------------------------------
 
 GRANT SELECT ON view_lab_admin_staff TO lab_admin;
 
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
+
 
 --reception view
 CREATE VIEW view_reception_patient AS
@@ -4469,24 +4414,15 @@ CREATE VIEW view_payment_transaction AS
     FROM
         paymenttransactions;		
 
-------------------------------------------------------------------------------------------------------------------------------
-
 --RECEPTION USER
 CREATE USER reception IDENTIFIED BY Hospital654321;						
-
-------------------------------------------------------------------------------------------------------------------------------
 
 --RECEPTION USER PERMISSIONS						
 GRANT connect TO reception;
 
-------------------------------------------------------------------------------------------------------------------------------
-
 GRANT SELECT, INSERT, UPDATE, DELETE ON view_reception_patient TO reception;
 
-GRANT SELECT, INSERT, UPDATE, DELETE ON view_payment_transaction TO reception;	   
-
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
+GRANT SELECT, INSERT, UPDATE, DELETE ON view_payment_transaction TO reception;	    
 
 --DOCTOR VIEWS
 CREATE VIEW view_doctor_patient AS
@@ -4510,12 +4446,8 @@ CREATE VIEW view_doctor AS
     FROM
         patient;
 
-------------------------------------------------------------------------------------------------------------------------------
-
 --DOCTOR USER
 CREATE USER doc123 IDENTIFIED BY Doctor654321;
-
-------------------------------------------------------------------------------------------------------------------------------
 
 --DOCTOR USER PERMISSIONS
 GRANT connect TO doc123;
@@ -4523,9 +4455,6 @@ GRANT connect TO doc123;
 GRANT SELECT ON view_doctor TO doc123;
 
 GRANT SELECT ON view_doctor_patient TO doc123;
-
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
 
 --Analyst Views
 CREATE VIEW view_analyst_department AS
@@ -4660,12 +4589,8 @@ CREATE VIEW view_analyst_patientmedicine AS
     FROM
         patient_medicine;
 
-------------------------------------------------------------------------------------------------------------------------------
-
 --Analyst User
 CREATE USER analyst IDENTIFIED BY Aa10987654321;
-
-------------------------------------------------------------------------------------------------------------------------------
 
 --Analyst User Permissions
 GRANT connect TO analyst;
@@ -4696,16 +4621,11 @@ GRANT SELECT ON view_analyst_patient TO analyst;
 
 GRANT SELECT ON view_analyst_laboratory TO analyst;
 
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
-
 --INDEX
 CREATE INDEX find_patient ON
     patient (
         first_name
     );
-
-------------------------------------------------------------------------------------------------------------------------------
 
 --DISPALY WARD NUMBER OF COVID PATIENT								
 SELECT
@@ -4845,7 +4765,7 @@ UPDATE STAFF SET shift_type='NIGHT' WHERE STAFF_ID = 13008;
 
 
 
-------------------------------------------------------------------------------------------
+
 ------------------------------------------------------------------------------------------
 
 -- FUNCTION TO GET NUMBER OF TRANSACTIONS
@@ -4983,8 +4903,7 @@ FROM
     inventory;
 
 
-------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------
+
 
 
 --Medicine Quantity too low trigger
@@ -5096,7 +5015,6 @@ WHERE
         department_id = 10004
     AND quantity < 10;
 
-------------------------------------------------------------------------------------------
 
 --To display the names of the patients who never got tested
 
@@ -5139,15 +5057,13 @@ WHERE
             lab.patient_id = p1.patient_id
     );
 
-------------------------------------------------------------------------------------------
+
 
 -- To display the total revenue for all the payment transactions 
 SELECT
     SUM(payment_amount) AS total_revenue
 FROM
     paymenttransactions;
-
-------------------------------------------------------------------------------------------
 
 --To display the monthly revenue or between any dates
 
@@ -5167,8 +5083,6 @@ FROM
          patient p
     JOIN patient_ward a ON p.patient_id = a.patient_id;
 
-------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------
 
 --DISPLAY WARD NUMBER OF COVID PATIENT FOR CONTACT TRACING BETWEEN TWO DATES
 				
@@ -5183,6 +5097,23 @@ SELECT*FROM PATIENT;
     ORDER BY first_name, admit_date DESC;
     
     SELECT * FROM covid_ward;
+	
+	
+--BRAND WISE INVENTORY ITEM VISUALIZATION
+SELECT item_brand,
+        item_name,
+        quantity
+FROM view_analyst_inventory
+GROUP BY item_brand,item_name,quantity;
 
-------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------
+--MATERIALIZED VIEW FOR HIGH RISK COVID PATIENTS									
+CREATE MATERIALIZED VIEW high_risk									
+BUILD IMMEDIATE									
+REFRESH FORCE ON COMMIT									
+AS SELECT PT.PATIENT_ID,PT.FIRST_NAME,PT.LAST_NAME,PT.ADDRESS,PT.DATE_OF_BIRTH,PT.AGE,PT.COVID_19,LB.TEST_RESULT, TYPE_OF_TEST									
+FROM PATIENT PT JOIN LABORATORY LB									
+ON PT.PATIENT_ID = LB.PATIENT_ID									
+WHERE LB.TEST_RESULT = 'Abnormal' AND PT.COVID_19 = 'YES'									
+ORDER BY LB.PATIENT_ID;									
+									
+SELECT * FROM HIGH_RISK;									
