@@ -4700,6 +4700,58 @@ END;
 
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
+--PROCEDURE TO GET WARD OF PATIENT WHEN PATIENT ID IS INPUT JOINING THREE TABLES
+
+CREATE OR REPLACE PROCEDURE get_ward_details(patid_in IN INT, wardid_out OUT INT, patfname_out OUT VARCHAR, patlname_out OUT VARCHAR, buildingname_out OUT VARCHAR, floor_out OUT VARCHAR)
+IS
+BEGIN
+DBMS_OUTPUT.PUT_LINE('THANK YOU FOR CHECKING. Patients Ward details are below');
+
+
+
+
+--patient.Patient_id,
+patient_ward.ward_id,
+patient.first_name,
+patient.last_name,
+hospitalward.building_name,
+hospitalward.floor INTO wardid_out,patfname_out,patlname_out,buildingname_out, floor_out
+FROM patient
+JOIN patient_ward
+ON patient.patient_id = patient_ward.patient_id
+JOIN hospitalward
+ON hospitalward.ward_id = patient_ward.ward_id
+WHERE patient_ward.PATIENT_ID = patid_in
+ORDER BY patient_ward.admit_date
+FETCH FIRST 1 ROWS ONLY;
+
+END get_ward_details;
+/
+
+
+
+
+SET SERVEROUTPUT ON;
+--Anonymous block
+DECLARE
+ward_id int;
+patfname_var VARCHAR(50);
+patlname_var VARCHAR(50);
+buildingname_var VARCHAR(50);
+floor_var INT;
+BEGIN
+get_ward_details('&PatientID', ward_id, patfname_var, patlname_var, buildingname_var, floor_var);
+--dbms_output.put_line('Patient id = '||PatientID);
+dbms_output.put_line('Ward id = '||ward_id);
+dbms_output.put_line('Patient first name = '||patfname_var);
+dbms_output.put_line('Patient last name = '||patlname_var);
+dbms_output.put_line('Building Name = '||buildingname_var);
+dbms_output.put_line('Building Name = '||floor_var);
+END;
+/
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 --Procedure to get department details with staff_id as input						
 
 CREATE OR REPLACE PROCEDURE get_staff_details (
