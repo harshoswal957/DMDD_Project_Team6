@@ -4360,66 +4360,8 @@ ALTER TABLE patient_ward RENAME COLUMN dischardge_date TO discharge_date;
 --4
 --Views 
 
-------------------------------------------------------------------------------------------
+
 --4.1.1
---LAB ADMIN VIEW
-CREATE
-VIEW view_lab_admin AS
-    SELECT
-        patient_id,
-        first_name,
-        last_name,
-        address,
-        date_of_birth,
-        age,
-        covid_19,
-        blood_group
-    FROM
-        patient;
-
-CREATE USER lab_admin IDENTIFIED BY Labadmin654321;
-
-GRANT connect TO lab_admin;
-
-GRANT SELECT ON view_lab_admin TO lab_admin;
-
---QUERIES TO RUN FROM LAB_ADMIN USER LOGIN SESSION
---SELECT * FROM admin.view_lab_admin; -- allowed
---SELECT * FROM admin.patient; -- not allowed
---INSERT INTO admin.view_lab_admin VALUES ('NEW','USER','11 TETLOW STREET','NO','7-Sep-1988',32,'NO','O-'); -- not allowed
-
-------------------------------------------------------------------------------------------
-
---4.1.2
---LAB ADMIN LABORATORY VIEW
-CREATE VIEW view_lab_admin_laboratory AS
-    SELECT
-        test_id,
-        patient_id,
-        date_of_test,
-        date_of_result,
-        type_of_test,
-        test_result,
-        staff_id
-    FROM
-        laboratory;
-
-GRANT SELECT, INSERT, UPDATE, DELETE ON view_lab_admin_laboratory TO lab_admin;
-
-------------------------------------------------------------------------------------------
---4.1.3
---LAB ADMIN STAFF VIEW
-CREATE VIEW view_lab_admin_staff AS
-    SELECT
-        staff_id
-    FROM
-        staff;
-
-GRANT SELECT ON view_lab_admin_staff TO lab_admin;
-
-------------------------------------------------------------------------------------------
-
---4.2.1
 --reception view
 CREATE VIEW view_reception_patient AS
     SELECT
@@ -4436,7 +4378,7 @@ CREATE VIEW view_reception_patient AS
     FROM
         patient;
 
---4.2.2        
+--4.1.2        
 CREATE VIEW view_payment_transaction AS
     SELECT
         payment_id,
@@ -4456,7 +4398,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON view_reception_patient TO reception;
 GRANT SELECT, INSERT, UPDATE, DELETE ON view_payment_transaction TO reception;	    
 
 ------------------------------------------------------------------------------------------
---4.3.1
+--4.2.1
 --DOCTOR VIEWS
 CREATE VIEW view_doctor_patient AS
     SELECT
@@ -4468,7 +4410,7 @@ CREATE VIEW view_doctor_patient AS
 
 ------------------------------------------------------------------------------------------
 
---4.3.2
+--4.2.2
 CREATE VIEW view_doctor AS
     SELECT
         patient_id,
@@ -4496,7 +4438,7 @@ GRANT SELECT ON view_doctor_patient TO doc123;
 
 ------------------------------------------------------------------------------------------
 
---4.4.1
+--4.3.1
 --Analyst Views
 CREATE VIEW view_analyst_department AS
     SELECT
@@ -4506,7 +4448,7 @@ CREATE VIEW view_analyst_department AS
     FROM
         department;
 
---4.4.2
+--4.3.2
 CREATE VIEW view_analyst_doctor AS
     SELECT
         doctor_id,
@@ -4521,7 +4463,7 @@ CREATE VIEW view_analyst_doctor AS
         doctor;
 
 
---4.4.3
+--4.3.3
 CREATE VIEW view_analyst_hospitalward AS
     SELECT
         ward_id,
@@ -4532,7 +4474,7 @@ CREATE VIEW view_analyst_hospitalward AS
     FROM
         hospitalward;
 
---4.4.4
+--4.3.4
 CREATE VIEW view_analyst_laboratory AS
     SELECT
         test_id,
@@ -4545,7 +4487,7 @@ CREATE VIEW view_analyst_laboratory AS
     FROM
         laboratory;
         
---4.4.5
+--4.3.5
 CREATE VIEW view_analyst_medicine AS
     SELECT
         medicine_id,
@@ -4554,7 +4496,7 @@ CREATE VIEW view_analyst_medicine AS
     FROM
         medicine;
 
---4.4.6
+--4.3.6
 CREATE VIEW view_analyst_patient AS
     SELECT
         patient_id,
@@ -4570,7 +4512,7 @@ CREATE VIEW view_analyst_patient AS
     FROM
         patient;
 
---4.4.7
+--4.3.7
 CREATE VIEW view_analyst_patientdoctor AS
     SELECT
         doc_pat_id,
@@ -4580,7 +4522,7 @@ CREATE VIEW view_analyst_patientdoctor AS
     FROM
         patient_doctor;
 
---4.4.8
+--4.3.8
 CREATE VIEW view_analyst_paymenttransaction AS
     SELECT
         payment_amount,
@@ -4589,7 +4531,7 @@ CREATE VIEW view_analyst_paymenttransaction AS
     FROM
         paymenttransactions;
 
---4.4.9
+--4.3.9
 CREATE VIEW view_analyst_staff AS
     SELECT
         staff_id,
@@ -4602,7 +4544,7 @@ CREATE VIEW view_analyst_staff AS
     FROM
         staff;
 
---4.4.10
+--4.3.10
 CREATE VIEW view_analyst_inventory AS
     SELECT
         item_id,
@@ -4614,7 +4556,7 @@ CREATE VIEW view_analyst_inventory AS
     FROM
         inventory;
 
---4.4.11
+--4.3.11
 CREATE VIEW view_analyst_staffward AS
     SELECT
         staff_ward_id,
@@ -4623,7 +4565,7 @@ CREATE VIEW view_analyst_staffward AS
     FROM
         staff_ward;
 
---4.4.12
+--4.3.12
 CREATE VIEW view_analyst_patientward AS
     SELECT
         pat_ward_id,
@@ -4634,7 +4576,7 @@ CREATE VIEW view_analyst_patientward AS
     FROM
         patient_ward;
 
---4.4.13
+--4.3.13
 CREATE VIEW view_analyst_patientmedicine AS
     SELECT
         pat_med_id,
@@ -4674,6 +4616,74 @@ GRANT SELECT ON view_analyst_medicine TO analyst;
 GRANT SELECT ON view_analyst_patient TO analyst;
 
 GRANT SELECT ON view_analyst_laboratory TO analyst;
+
+
+
+------------------------------------------------------------------------------------------
+--LAB ADMIN VIEW
+------------------------------------------------------------------------------------------
+--4.4.1
+--LAB ADMIN STAFF VIEW
+CREATE VIEW view_lab_admin_staff AS
+    SELECT
+        staff_id
+    FROM
+        staff;
+        
+CREATE USER lab_admin IDENTIFIED BY Labadmin654321;
+
+GRANT connect TO lab_admin;
+
+GRANT SELECT ON view_lab_admin_staff TO lab_admin;
+
+------------------------------------------------------------------------------------------
+
+--4.4.2
+--LAB ADMIN LABORATORY VIEW
+CREATE VIEW view_lab_admin_laboratory AS
+    SELECT
+        test_id,
+        patient_id,
+        date_of_test,
+        date_of_result,
+        type_of_test,
+        test_result,
+        staff_id
+    FROM
+        laboratory;
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON view_lab_admin_laboratory TO lab_admin;
+
+------------------------------------------------------------------------------------------
+
+--4.4.3
+
+CREATE
+VIEW view_lab_admin AS
+    SELECT
+        patient_id,
+        first_name,
+        last_name,
+        address,
+        date_of_birth,
+        age,
+        covid_19,
+        blood_group
+    FROM
+        patient;
+
+
+
+GRANT SELECT ON view_lab_admin TO lab_admin;
+
+
+--USER lab_admin 
+--Password Labadmin654321
+
+--QUERIES TO RUN FROM LAB_ADMIN USER LOGIN SESSION
+--SELECT * FROM admin.view_lab_admin; -- allowed
+--SELECT * FROM admin.patient; -- not allowed
+--INSERT INTO admin.view_lab_admin VALUES ('NEW','USER','11 TETLOW STREET','NO','7-Sep-1988',32,'NO','O-'); -- not allowed
 
 
 ------------------------------------------------------------------------------------------
@@ -4831,7 +4841,7 @@ dbms_output.put_line('Ward id = '||ward_id);
 dbms_output.put_line('Patient first name = '||patfname_var);
 dbms_output.put_line('Patient last name = '||patlname_var);
 dbms_output.put_line('Building Name = '||buildingname_var);
-dbms_output.put_line('Building Name = '||floor_var);
+dbms_output.put_line('Floor = '||floor_var);
 END;
 /
 
@@ -5113,7 +5123,45 @@ FROM
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--10
+--PACKAGE
+--10.1
+--PACKAGE USING FUNCTION AND PROCEDURE
+CREATE OR REPLACE PACKAGE pkg_Hospital IS
+  FUNCTION prnt_strng RETURN VARCHAR2;
+  PROCEDURE proc_medicine(medicine_name VARCHAR2, quantity INT);
+END pkg_Hospital;
 
+------------------------------------------------------------------------------------------
+
+CREATE OR REPLACE PACKAGE BODY pkg_Hospital IS
+  --Function Implimentation
+  FUNCTION prnt_strng RETURN VARCHAR2 IS
+    BEGIN
+      RETURN 'Welcome to Hospital Database ';
+    END prnt_strng;
+  
+  --Procedure Implimentation
+   PROCEDURE proc_medicine(medicine_name VARCHAR2, quantity INT) IS
+     BEGIN
+      INSERT INTO medicine (medicine_name,quantity) VALUES (medicine_name,quantity);
+     END;
+  
+END pkg_Hospital;
+
+--------------------------------------------------------------------------------------------
+
+SET SERVEROUTPUT ON;
+Begin
+Pkg_hospital.proc_medicine('Dolo-New',200);
+End;
+
+SELECT * FROM MEDICINE;
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
 --Queries
 --10.1
