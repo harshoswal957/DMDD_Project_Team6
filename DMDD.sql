@@ -5,31 +5,31 @@
 --1
 -- CREATE SEQUENCES FOR PKs:
 
-CREATE SEQUENCE pk10_seq START WITH 10001 MAXVALUE 10999;
+CREATE SEQUENCE pk10_seq START WITH 10001 MAXVALUE 10999; --SEQUENCE for Department
 
-CREATE SEQUENCE pk11_seq START WITH 11001 MAXVALUE 11999;
+CREATE SEQUENCE pk11_seq START WITH 11001 MAXVALUE 11999; --SEQUENCE for Patient_Doctor
 
-CREATE SEQUENCE pk12_seq START WITH 12001 MAXVALUE 12999;
+CREATE SEQUENCE pk12_seq START WITH 12001 MAXVALUE 12999; --SEQUENCE for Laboratory
 
-CREATE SEQUENCE pk13_seq START WITH 13001 MAXVALUE 13999;
+CREATE SEQUENCE pk13_seq START WITH 13001 MAXVALUE 13999; --SEQUENCE for Staff
 
-CREATE SEQUENCE pk14_seq START WITH 14001 MAXVALUE 14999;
+CREATE SEQUENCE pk14_seq START WITH 14001 MAXVALUE 14999; --SEQUENCE for Doctor 
 
-CREATE SEQUENCE pk15_seq START WITH 15001 MAXVALUE 15999;
+CREATE SEQUENCE pk15_seq START WITH 15001 MAXVALUE 15999; --SEQUENCE for Inventory
 
-CREATE SEQUENCE pk16_seq START WITH 16001 MAXVALUE 16999;
+CREATE SEQUENCE pk16_seq START WITH 16001 MAXVALUE 16999; --SEQUENCE for Patient
 
-CREATE SEQUENCE pk17_seq START WITH 17001 MAXVALUE 17999;
+CREATE SEQUENCE pk17_seq START WITH 17001 MAXVALUE 17999; --SEQUENCE for Paymenttransactions
 
-CREATE SEQUENCE pk18_seq START WITH 18001 MAXVALUE 18999;
+CREATE SEQUENCE pk18_seq START WITH 18001 MAXVALUE 18999; --SEQUENCE for Patient_medicine
 
-CREATE SEQUENCE pk19_seq START WITH 19001 MAXVALUE 19999;
+CREATE SEQUENCE pk19_seq START WITH 19001 MAXVALUE 19999; --SEQUENCE for Patient_Ward
 
-CREATE SEQUENCE pk20_seq START WITH 20001 MAXVALUE 20999;
+CREATE SEQUENCE pk20_seq START WITH 20001 MAXVALUE 20999; --SEQUENCE for Medicine
 
-CREATE SEQUENCE pk21_seq START WITH 21001 MAXVALUE 21999;
+CREATE SEQUENCE pk21_seq START WITH 21001 MAXVALUE 21999; --SEQUENCE for HospitalWard
 
-CREATE SEQUENCE pk22_seq START WITH 22001 MAXVALUE 22999;
+CREATE SEQUENCE pk22_seq START WITH 22001 MAXVALUE 22999; --SEQUENCE for Staff_Ward
 
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
@@ -5116,6 +5116,7 @@ FROM
 
 
 --Queries
+--10.1
 --To display the names of the inventory items whose qty is less than 5
 SELECT
     item_id,
@@ -5128,7 +5129,7 @@ WHERE
 
 
 ------------------------------------------------------------------------------------------
-
+--10.2
 --To display the names of the patients who have registered but not paid
 
 --INSERTING NEW PATIENT WITH NO PAYMENT RECORD
@@ -5176,8 +5177,12 @@ WHERE
 --SHOWING MISSING PAYMENT INFO
 --SELECT * FROM PATIENT;
 
+
+
 ------------------------------------------------------------------------------------------
 
+
+--10.3
 -- To display the total revenue for all the payment transactions 
 SELECT
     SUM(payment_amount) AS total_revenue
@@ -5189,6 +5194,7 @@ FROM
 
 ------------------------------------------------------------------------------------------
 
+--10.4
 --To display the monthly revenue or between any dates
 
 SELECT
@@ -5205,7 +5211,8 @@ WHERE
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
 
---Queries
+
+--10.5
 --DISPLAY WARD ALLOTMENT OF A PATIENT					
 SELECT
     p.first_name    AS "Patient",
@@ -5219,6 +5226,7 @@ FROM
 
 ------------------------------------------------------------------------------------------
 
+--10.6
 --DISPALY WARD NUMBER OF COVID PATIENT								
 SELECT
     distinct p.first_name    AS "Patient",
@@ -5234,7 +5242,7 @@ ORDER by admit_date DESC;
 
 ------------------------------------------------------------------------------------------
 
-
+--10.7
 --DISPLAY WARD NUMBER OF COVID PATIENT FOR CONTACT TRACING BETWEEN TWO DATES
 				
 SELECT * FROM PATIENT;
@@ -5252,8 +5260,9 @@ SELECT * FROM PATIENT;
 SELECT * FROM covid_ward;
 
 ------------------------------------------------------------------------------------------	
-	
---BRAND WISE INVENTORY ITEM VISUALIZATION
+
+--10.8	
+--BRAND WISE INVENTORY ITEM 
 SELECT item_brand,
         item_name,
         quantity
