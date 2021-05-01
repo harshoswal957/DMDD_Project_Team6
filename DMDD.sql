@@ -1,3 +1,8 @@
+---------------------------DMDD TEAM 6 FINAL PROJECT--------------------------------------
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
+--1
 -- CREATE SEQUENCES FOR PKs:
 
 CREATE SEQUENCE pk10_seq START WITH 10001 MAXVALUE 10999;
@@ -26,7 +31,10 @@ CREATE SEQUENCE pk21_seq START WITH 21001 MAXVALUE 21999;
 
 CREATE SEQUENCE pk22_seq START WITH 22001 MAXVALUE 22999;
 
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
+--2.1
 --CREATE TABLES:
 CREATE TABLE department (
     department_id        INT DEFAULT pk10_seq.NEXTVAL PRIMARY KEY,
@@ -136,6 +144,56 @@ CREATE TABLE staff_ward (
     staff_id       INT
 );
 
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
+--2.2
+--ADDING COLUMN CONSTRAINTS
+ALTER TABLE patient
+    ADD CONSTRAINT age_chk_pat CHECK ( age BETWEEN 0 AND 99 );
+
+ALTER TABLE patient MODIFY (
+    covid_19 NOT NULL
+);
+
+ALTER TABLE patient
+    ADD CONSTRAINT ins_chk_pat CHECK ( insurance IN ( 'YES', 'NO' ) );
+
+ALTER TABLE patient
+    ADD CONSTRAINT covid_chk_pat CHECK ( covid_19 IN ( 'YES', 'NO' ) );
+
+ALTER TABLE doctor MODIFY (
+    specialization NOT NULL
+);
+
+ALTER TABLE doctor
+    ADD CONSTRAINT age_chk_doc CHECK ( age BETWEEN 0 AND 80 );
+
+ALTER TABLE staff
+    ADD CONSTRAINT age_chk_stf CHECK ( age BETWEEN 0 AND 90 );
+
+ALTER TABLE staff
+    ADD CONSTRAINT shft_chk_stf CHECK ( shift_type IN ( 'DAY', 'NIGHT' ) );
+
+ALTER TABLE medicine MODIFY (
+    medicine_name unique
+);
+
+ALTER TABLE hospitalward
+    ADD CONSTRAINT wrdtp_chk_hspw CHECK ( ward_type IN ( 'GENERAL', 'PRIVATE', 'EMERGENCY' ) );
+
+ALTER TABLE hospitalward
+    ADD CONSTRAINT bldg_chk_hspw CHECK ( building_name IN ( 'OLD', 'NEW' ) );
+
+ALTER TABLE paymenttransactions ADD CONSTRAINT amnt_chk_pymt CHECK ( payment_amount > 50 );
+
+ALTER TABLE laboratory
+    ADD CONSTRAINT tstrl_chk_lab CHECK ( test_result IN ( 'Normal', 'Abnormal' ) );
+
+------------------------------------------------------------------------------------------
+
+--2.3
 --Creating foreign key Constraint
   ALTER TABLE patient_doctor
     ADD CONSTRAINT fk_pd_pid FOREIGN KEY ( patient_id )
@@ -201,7 +259,10 @@ ALTER TABLE staff_ward
     ADD CONSTRAINT fk_sw_wardid FOREIGN KEY ( ward_id )
         REFERENCES hospitalward ( ward_id );
 
---DISABLE CONSTRAINTS
+------------------------------------------------------------------------------------------
+
+--2.4
+--DISABLE FOREIGN KEY CONSTRAINTS
 ALTER TABLE staff_ward DISABLE CONSTRAINT fk_sw_sid;
 
 ALTER TABLE staff_ward DISABLE CONSTRAINT fk_sw_wardid;
@@ -232,10 +293,13 @@ ALTER TABLE patient_doctor DISABLE CONSTRAINT fk_pd_pid;
 
 ALTER TABLE patient_doctor DISABLE CONSTRAINT fk_pd_did;
 
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
+--3
 --Data Insertion 
 
 --Patient Table
-
 INSERT INTO patient (
     first_name,
     last_name,
@@ -567,7 +631,6 @@ INSERT INTO patient (
 );
 
 --PaymentTransactions TABLE
-
 INSERT INTO paymenttransactions (
     payment_amount,
     payment_date,
@@ -719,7 +782,6 @@ INSERT INTO paymenttransactions (
 );
 
 --Department table
-
 INSERT INTO department (
     department_name,
     hod_name,
@@ -791,7 +853,6 @@ INSERT INTO department (
 );
 
 --Doctor TABLE
-
 INSERT INTO doctor (
     first_name,
     last_name,
@@ -937,7 +998,6 @@ INSERT INTO doctor (
 );
 
 --HospitalWard Table
-
 INSERT INTO hospitalward (
     ward_type,
     building_name,
@@ -1085,7 +1145,6 @@ INSERT INTO hospitalward (
 
 
 --Laboratory Project
-
 INSERT INTO laboratory (
     patient_id,
     date_of_test,
@@ -1487,7 +1546,6 @@ INSERT INTO laboratory (
 );
 
 --Medicine Table
-
 INSERT INTO medicine (
     medicine_name,
     quantity
@@ -1649,7 +1707,6 @@ INSERT INTO medicine (
 );
 
 --Inventory Table
-
 INSERT INTO inventory (
     item_name,
     item_brand,
@@ -1987,7 +2044,6 @@ INSERT INTO inventory (
 );
 
 --Staff Table
-
 INSERT INTO staff (
     first_name,
     last_name,
@@ -2277,7 +2333,6 @@ INSERT INTO staff (
 );
 
 --Patient_Doctor Table
-
 INSERT INTO patient_doctor (
     patient_id,
     doctor_id,
@@ -2429,7 +2484,6 @@ INSERT INTO patient_doctor (
 );
 
 --PATIENT_MEDICINE Table
-
 INSERT INTO patient_medicine (
     patient_id,
     medicine_id
@@ -3031,7 +3085,6 @@ INSERT INTO patient_medicine (
 );
 
 --Staff_Ward Table
-
 INSERT INTO staff_ward (
     ward_id,
     staff_id
@@ -3513,7 +3566,6 @@ INSERT INTO staff_ward (
 );
 
 --Patient_Ward Table
-
 INSERT INTO patient_ward (
     patient_id,
     ward_id,
@@ -4258,52 +4310,11 @@ INSERT INTO patient_ward (
     '08-Jun-20'
 );
 
---CONSTRAINTS
---ALTER TABLE patient MODIFY (
---    payment_id NOT NULL
---);
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
-ALTER TABLE patient
-    ADD CONSTRAINT age_chk_pat CHECK ( age BETWEEN 0 AND 99 );
-
-ALTER TABLE patient MODIFY (
-    covid_19 NOT NULL
-);
-
-ALTER TABLE patient
-    ADD CONSTRAINT ins_chk_pat CHECK ( insurance IN ( 'YES', 'NO' ) );
-
-ALTER TABLE patient
-    ADD CONSTRAINT covid_chk_pat CHECK ( covid_19 IN ( 'YES', 'NO' ) );
-
-ALTER TABLE doctor MODIFY (
-    specialization NOT NULL
-);
-
-ALTER TABLE doctor
-    ADD CONSTRAINT age_chk_doc CHECK ( age BETWEEN 0 AND 80 );
-
-ALTER TABLE staff
-    ADD CONSTRAINT age_chk_stf CHECK ( age BETWEEN 0 AND 90 );
-
-ALTER TABLE staff
-    ADD CONSTRAINT shft_chk_stf CHECK ( shift_type IN ( 'DAY', 'NIGHT' ) );
-
-ALTER TABLE medicine MODIFY (
-    medicine_name unique
-);
-
-ALTER TABLE hospitalward
-    ADD CONSTRAINT wrdtp_chk_hspw CHECK ( ward_type IN ( 'GENERAL', 'PRIVATE', 'EMERGENCY' ) );
-
-ALTER TABLE hospitalward
-    ADD CONSTRAINT bldg_chk_hspw CHECK ( building_name IN ( 'OLD', 'NEW' ) );
-
-ALTER TABLE paymenttransactions ADD CONSTRAINT amnt_chk_pymt CHECK ( payment_amount > 50 );
-
-ALTER TABLE laboratory
-    ADD CONSTRAINT tstrl_chk_lab CHECK ( test_result IN ( 'Normal', 'Abnormal' ) );
-
+------------------------------------------------------------------------------------------
+--2.5
 --Enabling Foreign Key Constraints
 
 ALTER TABLE staff_ward ENABLE CONSTRAINT fk_sw_sid;
@@ -4336,13 +4347,21 @@ ALTER TABLE patient_doctor ENABLE CONSTRAINT fk_pd_pid;
 
 ALTER TABLE patient_doctor ENABLE CONSTRAINT fk_pd_did;
 
+------------------------------------------------------------------------------------------
+
 --RENAME COLUMN NAME
 ALTER TABLE patient_ward RENAME COLUMN dischardge_date TO discharge_date;
 
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
 
+
+--4
 --Views 
 
+------------------------------------------------------------------------------------------
+--4.1.1
 --LAB ADMIN VIEW
 CREATE
 VIEW view_lab_admin AS
@@ -4364,6 +4383,14 @@ GRANT connect TO lab_admin;
 
 GRANT SELECT ON view_lab_admin TO lab_admin;
 
+--QUERIES TO RUN FROM LAB_ADMIN USER LOGIN SESSION
+--SELECT * FROM admin.view_lab_admin; -- allowed
+--SELECT * FROM admin.patient; -- not allowed
+--INSERT INTO admin.view_lab_admin VALUES ('NEW','USER','11 TETLOW STREET','NO','7-Sep-1988',32,'NO','O-'); -- not allowed
+
+------------------------------------------------------------------------------------------
+
+--4.1.2
 --LAB ADMIN LABORATORY VIEW
 CREATE VIEW view_lab_admin_laboratory AS
     SELECT
@@ -4379,6 +4406,8 @@ CREATE VIEW view_lab_admin_laboratory AS
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON view_lab_admin_laboratory TO lab_admin;
 
+------------------------------------------------------------------------------------------
+--4.1.3
 --LAB ADMIN STAFF VIEW
 CREATE VIEW view_lab_admin_staff AS
     SELECT
@@ -4388,8 +4417,9 @@ CREATE VIEW view_lab_admin_staff AS
 
 GRANT SELECT ON view_lab_admin_staff TO lab_admin;
 
+------------------------------------------------------------------------------------------
 
-
+--4.2.1
 --reception view
 CREATE VIEW view_reception_patient AS
     SELECT
@@ -4406,6 +4436,7 @@ CREATE VIEW view_reception_patient AS
     FROM
         patient;
 
+--4.2.2        
 CREATE VIEW view_payment_transaction AS
     SELECT
         payment_id,
@@ -4424,6 +4455,8 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON view_reception_patient TO reception;
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON view_payment_transaction TO reception;	    
 
+------------------------------------------------------------------------------------------
+--4.3.1
 --DOCTOR VIEWS
 CREATE VIEW view_doctor_patient AS
     SELECT
@@ -4433,6 +4466,9 @@ CREATE VIEW view_doctor_patient AS
     FROM
         patient_doctor;
 
+------------------------------------------------------------------------------------------
+
+--4.3.2
 CREATE VIEW view_doctor AS
     SELECT
         patient_id,
@@ -4446,6 +4482,7 @@ CREATE VIEW view_doctor AS
     FROM
         patient;
 
+------------------------------------------------------------------------------------------
 --DOCTOR USER
 CREATE USER doc123 IDENTIFIED BY Doctor654321;
 
@@ -4456,6 +4493,10 @@ GRANT SELECT ON view_doctor TO doc123;
 
 GRANT SELECT ON view_doctor_patient TO doc123;
 
+
+------------------------------------------------------------------------------------------
+
+--4.4.1
 --Analyst Views
 CREATE VIEW view_analyst_department AS
     SELECT
@@ -4465,6 +4506,7 @@ CREATE VIEW view_analyst_department AS
     FROM
         department;
 
+--4.4.2
 CREATE VIEW view_analyst_doctor AS
     SELECT
         doctor_id,
@@ -4478,6 +4520,8 @@ CREATE VIEW view_analyst_doctor AS
     FROM
         doctor;
 
+
+--4.4.3
 CREATE VIEW view_analyst_hospitalward AS
     SELECT
         ward_id,
@@ -4488,6 +4532,7 @@ CREATE VIEW view_analyst_hospitalward AS
     FROM
         hospitalward;
 
+--4.4.4
 CREATE VIEW view_analyst_laboratory AS
     SELECT
         test_id,
@@ -4499,7 +4544,8 @@ CREATE VIEW view_analyst_laboratory AS
         staff_id
     FROM
         laboratory;
-
+        
+--4.4.5
 CREATE VIEW view_analyst_medicine AS
     SELECT
         medicine_id,
@@ -4508,6 +4554,7 @@ CREATE VIEW view_analyst_medicine AS
     FROM
         medicine;
 
+--4.4.6
 CREATE VIEW view_analyst_patient AS
     SELECT
         patient_id,
@@ -4523,6 +4570,7 @@ CREATE VIEW view_analyst_patient AS
     FROM
         patient;
 
+--4.4.7
 CREATE VIEW view_analyst_patientdoctor AS
     SELECT
         doc_pat_id,
@@ -4532,6 +4580,7 @@ CREATE VIEW view_analyst_patientdoctor AS
     FROM
         patient_doctor;
 
+--4.4.8
 CREATE VIEW view_analyst_paymenttransaction AS
     SELECT
         payment_amount,
@@ -4540,6 +4589,7 @@ CREATE VIEW view_analyst_paymenttransaction AS
     FROM
         paymenttransactions;
 
+--4.4.9
 CREATE VIEW view_analyst_staff AS
     SELECT
         staff_id,
@@ -4552,6 +4602,7 @@ CREATE VIEW view_analyst_staff AS
     FROM
         staff;
 
+--4.4.10
 CREATE VIEW view_analyst_inventory AS
     SELECT
         item_id,
@@ -4563,6 +4614,7 @@ CREATE VIEW view_analyst_inventory AS
     FROM
         inventory;
 
+--4.4.11
 CREATE VIEW view_analyst_staffward AS
     SELECT
         staff_ward_id,
@@ -4571,6 +4623,7 @@ CREATE VIEW view_analyst_staffward AS
     FROM
         staff_ward;
 
+--4.4.12
 CREATE VIEW view_analyst_patientward AS
     SELECT
         pat_ward_id,
@@ -4581,6 +4634,7 @@ CREATE VIEW view_analyst_patientward AS
     FROM
         patient_ward;
 
+--4.4.13
 CREATE VIEW view_analyst_patientmedicine AS
     SELECT
         pat_med_id,
@@ -4621,28 +4675,55 @@ GRANT SELECT ON view_analyst_patient TO analyst;
 
 GRANT SELECT ON view_analyst_laboratory TO analyst;
 
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
+--5
+--MATERIALIZED VIEW FOR HIGH RISK COVID PATIENTS									
+CREATE MATERIALIZED VIEW high_risk									
+BUILD IMMEDIATE									
+REFRESH FORCE ON COMMIT									
+AS SELECT PT.PATIENT_ID,PT.FIRST_NAME,PT.LAST_NAME,PT.ADDRESS,PT.DATE_OF_BIRTH,PT.AGE,PT.COVID_19,LB.TEST_RESULT, TYPE_OF_TEST									
+FROM PATIENT PT JOIN LABORATORY LB									
+ON PT.PATIENT_ID = LB.PATIENT_ID									
+WHERE LB.TEST_RESULT = 'Abnormal' AND PT.COVID_19 = 'YES'									
+ORDER BY LB.PATIENT_ID;									
+									
+SELECT * FROM HIGH_RISK;			
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
+--6
 --INDEX
 CREATE INDEX find_patient ON
     patient (
         first_name
     );
 
---DISPALY WARD NUMBER OF COVID PATIENT								
-SELECT
-    p.first_name    AS "Patient",
-    a.ward_id       AS "Room No.",
-    a.admit_date    AS "Date and Time of admission"
-FROM
-         patient p
-    JOIN patient_ward a ON p.patient_id = a.patient_id
-WHERE
-    ( covid_19 = 'YES' );
+--PATIENT table
+SELECT * FROM patient;
+
+--USING THE INDEX
+EXPLAIN PLAN FOR SELECT * FROM patient WHERE first_name = 'RICHARD';
+SELECT PLAN_TABLE_OUTPUT FROM TABLE(DBMS_XPLAN.DISPLAY());
+
+-- WITHOUT USING THE INDEX
+EXPLAIN PLAN FOR SELECT * FROM patient WHERE LAST_NAME = 'GILL';
+SELECT PLAN_TABLE_OUTPUT FROM TABLE(DBMS_XPLAN.DISPLAY());
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
+
 
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
 
+--7
 --PROCEDURES
 
+--7.1
 --Procedure to get appointment and doctor details with patient_id as input												
 CREATE OR REPLACE PROCEDURE get_appoin_details (
     patid_in        IN   INT,
@@ -4694,13 +4775,18 @@ BEGIN
 END;
 /	
 
+--SELECT * FROM patient_doctor WHERE PATIENT_ID = 16003;
+--SELECT * FROM doctor WHERE DOCTOR_ID = 14003;
+
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
 
-
+--7.2
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
 --PROCEDURE TO GET WARD OF PATIENT WHEN PATIENT ID IS INPUT JOINING THREE TABLES
+
+--DROP PROCEDURE get_ward_details;
 
 CREATE OR REPLACE PROCEDURE get_ward_details(patid_in IN INT, wardid_out OUT INT, patfname_out OUT VARCHAR, patlname_out OUT VARCHAR, buildingname_out OUT VARCHAR, floor_out OUT VARCHAR)
 IS
@@ -4709,8 +4795,7 @@ DBMS_OUTPUT.PUT_LINE('THANK YOU FOR CHECKING. Patients Ward details are below');
 
 
 
-
---patient.Patient_id,
+SELECT
 patient_ward.ward_id,
 patient.first_name,
 patient.last_name,
@@ -4750,8 +4835,14 @@ dbms_output.put_line('Building Name = '||floor_var);
 END;
 /
 
+--DEMO USING MANUAL PROCEDURE
+--SELECT * FROM patient WHERE PATIENT_ID = 16001;
+--SELECT * FROM patient_ward WHERE patient_id = 16001 ORDER BY patient_ward.admit_date FETCH FIRST 1 ROWS ONLY;
+--SELECT * FROM hospitalward WHERE ward_id = 21001;
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+--7.3
 --Procedure to get department details with staff_id as input						
 
 CREATE OR REPLACE PROCEDURE get_staff_details (
@@ -4780,13 +4871,21 @@ BEGIN
     get_staff_details(&staffid, department_name);
     dbms_output.put_line('Department name = ' || department_name);
 END;
-/					
+/				
+
+--DEMO SELECT
+--SELECT * FROM staff WHERE STAFF_ID = 13006;
+--SELECT * FROM department WHERE DEPARTMENT_ID = 10006;
+
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
 
+--8
 --Functions
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
+
+--8.1
 -- FUNCTION TO GET NUMBER OF EMPLOYEES IN DAY/NIGHT SHIFT
 
 CREATE OR REPLACE FUNCTION get_total_emp (
@@ -4815,17 +4914,21 @@ FROM
 SELECT * FROM STAFF;
 UPDATE STAFF SET shift_type='NIGHT' WHERE STAFF_ID = 13008;
 
+--WITHOUT USING FUNCTION
+SELECT COUNT(shift_type) FROM STAFF WHERE shift_type = 'NIGHT';
+
 
 
 
 ------------------------------------------------------------------------------------------
 
+--8.2
 -- FUNCTION TO GET TOTAL REVENUE
 CREATE OR REPLACE FUNCTION totalrevenue RETURN NUMBER IS
     total NUMBER := 0;
 BEGIN
     SELECT
-        SUM(payment_amount)
+        SUM(payment_amount) -- Aggregate function
     INTO total
     FROM
         paymenttransactions;
@@ -4844,14 +4947,16 @@ END;
 /
 
 ------------------------------------------------------------------------------------------
-SELECT * FROM paymenttransactions;
-UPDATE paymenttransactions SET payment_amount = 9999 WHERE payment_id = 17015;
+--SELECT * FROM paymenttransactions;
+--INSERT INTO PAYMENTTRANSACTIONS (payment_amount, payment_date,patient_id) VALUES (1000000,'1-May-2021',16005);
+--UPDATE paymenttransactions SET payment_amount = 9999 WHERE payment_id = 17015;
 
 
 
 ------------------------------------------------------------------------------------------
 
---FUNCTION TO GET THE PATIENT ID WITH FIRST NAME
+--8.3
+--FUNCTION TO GET THE PATIENT ID WITH FIRST NAME USING CURSORS AND EXCEPTION HANDLING
 CREATE OR REPLACE FUNCTION findpatientid (
     name_in IN VARCHAR2
 ) RETURN NUMBER IS
@@ -4891,6 +4996,15 @@ WHERE
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
 
+
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
+--9
+--TRIGGERS
+
+--9.1
 --Staff age shift trigger
 
 
@@ -4902,7 +5016,7 @@ CREATE OR REPLACE TRIGGER staff_age_shift BEFORE
     WHEN ( new.age > 50
            AND new.shift_type = 'NIGHT' )
 BEGIN
-    dbms_output.put_line('SENIOR CITIZEN, PLEASE ASSIGN DAY SHIFTS ONLY:');
+    dbms_output.put_line('SENIOR CITIZEN, RECOMMENDED TO ASSIGN DAY SHIFTS ONLY:');
 END;
 /
 
@@ -4922,6 +5036,8 @@ INSERT INTO staff (
     'NIGHT'
 );
 
+------------------------------------------------------------------------------------------
+
 SELECT
     *
 FROM
@@ -4930,6 +5046,7 @@ FROM
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
 
+--9.2
 --Inventory Quantity too low trigger
 
 
@@ -4944,11 +5061,15 @@ BEGIN
 END;
 /
 
+------------------------------------------------------------------------------------------
+
 UPDATE inventory
 SET
     quantity = 2
 WHERE
     item_id = 15002;
+    
+------------------------------------------------------------------------------------------
 
 SELECT
     *
@@ -4956,9 +5077,10 @@ FROM
     inventory;
 
 
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
-
-
+--9.3
 --Medicine Quantity too low trigger
 
 
@@ -4973,11 +5095,15 @@ BEGIN
 END;
 /
 
+------------------------------------------------------------------------------------------
+
 UPDATE medicine
 SET
     quantity = 2
 WHERE
     medicine_id = 20002;
+
+------------------------------------------------------------------------------------------
 
 SELECT
     *
@@ -4986,6 +5112,162 @@ FROM
 
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
+
+
+
+--Queries
+--To display the names of the inventory items whose qty is less than 5
+SELECT
+    item_id,
+    item_name
+FROM
+    inventory
+WHERE
+        department_id = 10004
+    AND quantity < 10;
+
+
+------------------------------------------------------------------------------------------
+
+--To display the names of the patients who have registered but not paid
+
+--INSERTING NEW PATIENT WITH NO PAYMENT RECORD
+INSERT INTO patient (
+    first_name,
+    last_name,
+    address,
+    insurance,
+    date_of_birth,
+    age,
+    covid_19,
+    blood_group,
+    payment_id
+) VALUES (
+    'SAM',
+    'CURRAN',
+    '98 SOMERVILLE',
+    'YES',
+    '29-Aug-2002',
+    18,
+    'NO',
+    'B+',
+    ''
+);
+
+------------------------------------------------------------------------------------------
+
+
+SELECT
+    patient_id,
+    last_name,
+    first_name
+FROM
+    patient p1
+WHERE
+    NOT EXISTS (
+        SELECT
+            lab.patient_id
+        FROM
+            laboratory lab
+        WHERE
+            lab.patient_id = p1.patient_id
+    );
+
+--SHOWING MISSING PAYMENT INFO
+--SELECT * FROM PATIENT;
+
+------------------------------------------------------------------------------------------
+
+-- To display the total revenue for all the payment transactions 
+SELECT
+    SUM(payment_amount) AS total_revenue
+FROM
+    paymenttransactions;
+
+
+
+
+------------------------------------------------------------------------------------------
+
+--To display the monthly revenue or between any dates
+
+SELECT
+    SUM(payment_amount) AS total_revenue
+FROM
+    paymenttransactions
+WHERE
+    payment_date BETWEEN '01-JAN-21' AND '13-jan-21';		
+    
+--SELECT * FROM paymenttransactions;
+
+
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
+--Queries
+--DISPLAY WARD ALLOTMENT OF A PATIENT					
+SELECT
+    p.first_name    AS "Patient",
+    a.ward_id       AS "Room No.",
+    a.admit_date    AS "Date of admission"
+FROM
+         patient p
+    JOIN patient_ward a ON p.patient_id = a.patient_id
+    ORDER BY a.admit_date DESC
+    ;
+
+------------------------------------------------------------------------------------------
+
+--DISPALY WARD NUMBER OF COVID PATIENT								
+SELECT
+    distinct p.first_name    AS "Patient",
+    a.patient_id,
+    a.ward_id       AS "Room No.",
+    a.admit_date    AS "Date of admission"
+FROM
+         patient p
+    JOIN patient_ward a ON p.patient_id = a.patient_id
+WHERE
+    ( covid_19 = 'YES' )
+ORDER by admit_date DESC;
+
+------------------------------------------------------------------------------------------
+
+
+--DISPLAY WARD NUMBER OF COVID PATIENT FOR CONTACT TRACING BETWEEN TWO DATES
+				
+SELECT * FROM PATIENT;
+
+
+    CREATE or replace VIEW covid_ward AS 
+    SELECT p.patient_id,p.first_name,p.last_name,w.ward_id,h.floor,h.building_name,w.admit_date
+    FROM Patient p,Patient_ward w,HospitalWard h
+    WHERE ( w.patient_id=p.patient_id )
+    AND ( w.ward_id=h.ward_id )
+    AND covid_19 = 'YES'
+    and admit_date between '27-03-20' and '27-04-20'
+    ORDER BY first_name, admit_date DESC;
+    
+SELECT * FROM covid_ward;
+
+------------------------------------------------------------------------------------------	
+	
+--BRAND WISE INVENTORY ITEM VISUALIZATION
+SELECT item_brand,
+        item_name,
+        quantity
+FROM view_analyst_inventory
+GROUP BY item_brand,item_name,quantity;
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
 
 --SELECT STATEMENTS FOR TABLES
 
@@ -5056,117 +5338,27 @@ FROM
 
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
+--SELECT STATEMENT FOR VIEWS
 
---Queries
---To display the names of the inventory items whose qty is less than 5
-SELECT
-    item_id,
-    item_name
-FROM
-    inventory
-WHERE
-        department_id = 10004
-    AND quantity < 10;
+SELECT * FROM view_reception_patient;
+SELECT * FROM view_payment_transaction;
+SELECT * FROM view_Doctor_patient;
+SELECT * FROM view_Doctor;
+SELECT * FROM VIEW_ANALYST_DEPARTMENT;
+SELECT * FROM VIEW_ANALYST_DOCTOR;
+SELECT * FROM VIEW_ANALYST_HOSPITALWARD;
+SELECT * FROM VIEW_ANALYST_LABORATORY;
+SELECT * FROM VIEW_ANALYST_MEDICINE;
+SELECT * FROM VIEW_ANALYST_PATIENT;
+SELECT * FROM VIEW_ANALYST_PATIENTDOCTOR;
+SELECT * FROM VIEW_ANALYST_PAYMENTTRANSACTION;
+SELECT * FROM VIEW_ANALYST_STAFF;
+SELECT * FROM VIEW_ANALYST_INVENTORY;
+SELECT * FROM VIEW_ANALYST_STAFFWARD;
+SELECT * FROM VIEW_ANALYST_PATIENTWARD;
+SELECT * FROM VIEW_ANALYST_PATIENTMEDICINE;
 
-
---To display the names of the patients who never got tested
-
-INSERT INTO patient (
-    first_name,
-    last_name,
-    address,
-    insurance,
-    date_of_birth,
-    age,
-    covid_19,
-    blood_group,
-    payment_id
-) VALUES (
-    'SAM',
-    'CURRAN',
-    '98 SOMERVILLE',
-    'YES',
-    '29-Aug-2002',
-    18,
-    'YES',
-    'B+',
-    ''
-);
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
 
-SELECT
-    patient_id,
-    last_name,
-    first_name
-FROM
-    patient p1
-WHERE
-    NOT EXISTS (
-        SELECT
-            lab.patient_id
-        FROM
-            laboratory lab
-        WHERE
-            lab.patient_id = p1.patient_id
-    );
-
-
-
--- To display the total revenue for all the payment transactions 
-SELECT
-    SUM(payment_amount) AS total_revenue
-FROM
-    paymenttransactions;
-
---To display the monthly revenue or between any dates
-
-SELECT
-    SUM(payment_amount) AS total_revenue
-FROM
-    paymenttransactions
-WHERE
-    payment_date BETWEEN '01-JAN-21' AND '13-jan-21';												
---Queries
---DISPLAY WARD ALLOTMENT OF A PATIENT					
-SELECT
-    p.first_name    AS "Patient",
-    a.ward_id       AS "Room No.",
-    a.admit_date    AS "Date and Time of admission"
-FROM
-         patient p
-    JOIN patient_ward a ON p.patient_id = a.patient_id;
-
-
---DISPLAY WARD NUMBER OF COVID PATIENT FOR CONTACT TRACING BETWEEN TWO DATES
-				
-SELECT*FROM PATIENT;
-    CREATE or replace VIEW covid_ward AS 
-    SELECT p.patient_id,p.first_name,p.last_name,w.ward_id,h.floor,h.building_name,w.admit_date
-    FROM Patient p,Patient_ward w,HospitalWard h
-    WHERE ( w.patient_id=p.patient_id )
-    AND ( w.ward_id=h.ward_id )
-    AND covid_19 = 'YES'
-    and admit_date between '27-03-20' and '27-04-20'
-    ORDER BY first_name, admit_date DESC;
-    
-    SELECT * FROM covid_ward;
-	
-	
---BRAND WISE INVENTORY ITEM VISUALIZATION
-SELECT item_brand,
-        item_name,
-        quantity
-FROM view_analyst_inventory
-GROUP BY item_brand,item_name,quantity;
-
---MATERIALIZED VIEW FOR HIGH RISK COVID PATIENTS									
-CREATE MATERIALIZED VIEW high_risk									
-BUILD IMMEDIATE									
-REFRESH FORCE ON COMMIT									
-AS SELECT PT.PATIENT_ID,PT.FIRST_NAME,PT.LAST_NAME,PT.ADDRESS,PT.DATE_OF_BIRTH,PT.AGE,PT.COVID_19,LB.TEST_RESULT, TYPE_OF_TEST									
-FROM PATIENT PT JOIN LABORATORY LB									
-ON PT.PATIENT_ID = LB.PATIENT_ID									
-WHERE LB.TEST_RESULT = 'Abnormal' AND PT.COVID_19 = 'YES'									
-ORDER BY LB.PATIENT_ID;									
-									
-SELECT * FROM HIGH_RISK;									
