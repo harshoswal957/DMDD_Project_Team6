@@ -5117,7 +5117,7 @@ FROM
 
 --Queries
 --10.1
---To display the names of the inventory items whose qty is less than 5
+--To display the names of the inventory items whose qty is less than 10
 SELECT
     item_id,
     item_name
